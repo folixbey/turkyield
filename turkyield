@@ -10441,43 +10441,39 @@ function getTorso(x)
 	return x:FindFirstChild("Torso") or x:FindFirstChild("UpperTorso") or x:FindFirstChild("LowerTorso") or x:FindFirstChild("HumanoidRootPart")
 end
 
+local bangLoop
+local bangDied
+
 addcmd("bang", {"rape"}, function(args, speaker)
-	execCmd("unbang")
-	wait()
-	local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
-	-- bangAnim = Instance.new("Animation")
-	-- bangAnim.AnimationId = not r15(speaker) and "rbxassetid://148840371" or "rbxassetid://5918726674"
-	-- bang = humanoid:LoadAnimation(bangAnim)
-	-- bang:Play(0.1, 1, 1)
-	-- bang:AdjustSpeed(args[2] or 3)
-	bangDied = humanoid.Died:Connect(function()
-		-- bang:Stop()
-		-- bangAnim:Destroy()
-		bangDied:Disconnect()
-		bangLoop:Disconnect()
-	end)
-	if args[1] then
-		local players = getPlayer(args[1], speaker)
-		for _, v in pairs(players) do
-			local bangplr = Players[v].Name
-			local bangOffet = CFrame.new(0, 0, 1.1)
-			bangLoop = RunService.Stepped:Connect(function()
-				pcall(function()
-					local otherRoot = getTorso(Players[bangplr].Character)
-					getRoot(speaker.Character).CFrame = otherRoot.CFrame * bangOffet
-				end)
-			end)
-		end
-	end
+    execCmd("unbang")
+    wait()
+    local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
+    bangDied = humanoid.Died:Connect(function()
+        bangDied:Disconnect()
+        if bangLoop then bangLoop:Disconnect() end
+    end)
+    if args[1] then
+        local players = getPlayer(args[1], speaker)
+        for _, v in pairs(players) do
+            local bangplr = Players[v].Name
+            local bangOffet = CFrame.new(0, 0, 1.1)
+            bangLoop = RunService.Stepped:Connect(function()
+                pcall(function()
+                    local otherRoot = getTorso(Players[bangplr].Character)
+                    getRoot(speaker.Character).CFrame = otherRoot.CFrame * bangOffet
+                end)
+            end)
+        end
+    end
 end)
 
 addcmd("unbang", {"unrape"}, function(args, speaker)
-	if bangDied then
-		bangDied:Disconnect()
-		-- bang:Stop()
-		-- bangAnim:Destroy()
-		bangLoop:Disconnect()
-	end
+    if bangDied then
+        bangDied:Disconnect()
+    end
+    if bangLoop then
+        bangLoop:Disconnect()
+    end
 end)
 
 addcmd('carpet',{},function(args, speaker)
