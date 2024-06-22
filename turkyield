@@ -10442,25 +10442,25 @@ function getTorso(x)
 end
 
 addcmd("benx", {"rape"}, function(args, speaker)
-	execCmd("unbang")
+	execCmd("unbenx")
 	wait()
 	local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
-	bang:Play(0.1, 1, 1)
-	bang:AdjustSpeed(args[2] or 3)
-	bangDied = humanoid.Died:Connect(function()
-		bang:Stop()
-		bangDied:Disconnect()
-		bangLoop:Disconnect()
+	benx:Play(0.1, 1, 1)
+	benx:AdjustSpeed(args[2] or 3)
+	benxDied = humanoid.Died:Connect(function()
+		benx:Stop()
+		benxDied:Disconnect()
+		benxLoop:Disconnect()
 	end)
 	if args[1] then
 		local players = getPlayer(args[1], speaker)
 		for _, v in pairs(players) do
-			local bangplr = Players[v].Name
-			local bangOffet = CFrame.new(0, 0, 1.1)
-			bangLoop = RunService.Stepped:Connect(function()
+			local benxplr = Players[v].Name
+			local benxOffet = CFrame.new(0, 0, 1.1)
+			benxLoop = RunService.Stepped:Connect(function()
 				pcall(function()
-					local otherRoot = getTorso(Players[bangplr].Character)
-					getRoot(speaker.Character).CFrame = otherRoot.CFrame * bangOffet
+					local otherRoot = getTorso(Players[benxplr].Character)
+					getRoot(speaker.Character).CFrame = otherRoot.CFrame * benxOffet
 				end)
 			end)
 		end
@@ -10468,11 +10468,11 @@ addcmd("benx", {"rape"}, function(args, speaker)
 end)
 
 addcmd("unbenx", {"unrape"}, function(args, speaker)
-	if bangDied then
-		bangDied:Disconnect()
-		bang:Stop()
-		bangAnim:Destroy()
-		bangLoop:Disconnect()
+	if benxDied then
+		benxDied:Disconnect()
+		benx:Stop()
+		benxAnim:Destroy()
+		benxLoop:Disconnect()
 	end
 end)
 
