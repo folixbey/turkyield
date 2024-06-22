@@ -10475,7 +10475,7 @@ addcmd("unbang", {"unrape"}, function(args, speaker)
 	if bangDied then
 		bangDied:Disconnect()
 		bang:Stop()
-		-- bangAnim:Destroy()
+		bangAnim:Destroy()
 		bangLoop:Disconnect()
 	end
 end)
