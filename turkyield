@@ -10441,12 +10441,51 @@ function getTorso(x)
 	return x:FindFirstChild("Torso") or x:FindFirstChild("UpperTorso") or x:FindFirstChild("LowerTorso") or x:FindFirstChild("HumanoidRootPart")
 end
 
-addcmd("bang", {"rape"}, function(args, speaker)
-	execCmd("unbang")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local function getRoot(character)
+	return character:FindFirstChild("HumanoidRootPart")
+end
+
+local function getTorso(character)
+	return character:FindFirstChildWhichIsA("BasePart")
+end
+
+local function getPlayer(name)
+	local players = {}
+	for _, player in ipairs(Players:GetPlayers()) do
+		if player.Name:lower():find(name:lower()) then
+			table.insert(players, player)
+		end
+	end
+	return players
+end
+
+local function r15(speaker)
+	return speaker.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R15
+end
+
+local bangDied, bangLoop, bangAnim, bang
+
+-- Add the "bang" command
+local function bangCommand(args, speaker)
+	if bangLoop then
+		bangLoop:Disconnect()
+	end
+	if bangDied then
+		bangDied:Disconnect()
+	end
+	if bang then
+		bang:Stop()
+		bangAnim:Destroy()
+	end
+	
 	wait()
+	
 	local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
 	bangAnim = Instance.new("Animation")
-	-- bangAnim.AnimationId = not r15(speaker) and "rbxassetid://148840371" or "rbxassetid://5918726674"
+	bangAnim.AnimationId = "rbxassetid://616168032" -- Zombie walk animation
 	bang = humanoid:LoadAnimation(bangAnim)
 	bang:Play(0.1, 1, 1)
 	bang:AdjustSpeed(args[2] or 3)
@@ -10457,36 +10496,50 @@ addcmd("bang", {"rape"}, function(args, speaker)
 		bangLoop:Disconnect()
 	end)
 	if args[1] then
-		local players = getPlayer(args[1], speaker)
+		local players = getPlayer(args[1])
 		for _, v in pairs(players) do
-			local bangplr = Players[v].Name
-			local bangOffet = CFrame.new(0, 0, 1.1)
+			local bangplr = v.Name
+			local bangOffset = CFrame.new(0, 0, 1.1)
 			bangLoop = RunService.Stepped:Connect(function()
 				pcall(function()
 					local otherRoot = getTorso(Players[bangplr].Character)
-					getRoot(speaker.Character).CFrame = otherRoot.CFrame * bangOffet
+					local speakerRoot = getRoot(speaker.Character)
+					speakerRoot.CFrame = otherRoot.CFrame * bangOffset
 				end)
 			end)
 		end
 	end
-end)
+end
 
-addcmd("unbang", {"unrape"}, function(args, speaker)
+-- Add the "unbang" command
+local function unbangCommand()
 	if bangDied then
 		bangDied:Disconnect()
+	end
+	if bang then
 		bang:Stop()
 		bangAnim:Destroy()
+	end
+	if bangLoop then
 		bangLoop:Disconnect()
 	end
-end)
+end
 
-addcmd("unbang", {"unrape"}, function(args, speaker)
-	if bangDied then
-		bangDied:Disconnect()
-		bang:Stop()
-		bangAnim:Destroy()
-		bangLoop:Disconnect()
+-- Example usage
+local function onMessageReceived(message, speaker)
+	local args = message:split(" ")
+	local command = table.remove(args, 1):lower()
+
+	if command == "!bang" then
+		bangCommand(args, speaker)
+	elseif command == "!unbang" then
+		unbangCommand()
 	end
+end
+
+-- Connect to the chat event (for Synapse X or other executors)
+Players.LocalPlayer.Chatted:Connect(function(message)
+	onMessageReceived(message, Players.LocalPlayer)
 end)
 
 addcmd('carpet',{},function(args, speaker)
