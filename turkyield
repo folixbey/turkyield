@@ -10473,26 +10473,58 @@ local function r15(speaker)
 	return speaker.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R15
 end
 
-addcmd("bang", {"rape"}, function(args, speaker)
-	if args[1] then
-		local players = getPlayer(args[1], speaker)
-		for _, v in pairs(players) do
-			local bangplr = Players[v].Name
-			local bangOffet = CFrame.new(0, 0, 1.1)
-			bangLoop = RunService.Stepped:Connect(function()
-				pcall(function()
-					local otherRoot = getTorso(Players[bangplr].Character)
-					getRoot(speaker.Character).CFrame = otherRoot.CFrame * bangOffet
-				end)
-			end)
-		end
-	end
-end)
+addcmd("bang", {"arkana"}, function(args, speaker)
+  if not args[1] then
+    speaker:Chat("Doğru kullanım: /bang (oyuncu)")
+    return
+  end
 
-addcmd("unbang", {"unrape"}, function(args, speaker)
-	if bangLoop then
-		bangLoop:Disconnect()
-	end
+  local targetPlayer = getPlayer(args[1], speaker)
+  if not targetPlayer then
+    speaker:Chat("Oyuncu bulunamadı: " .. args[1])
+    return
+  end
+
+  local targetCharacter = targetPlayer.Character
+  if not targetCharacter then
+    speaker:Chat("Oyuncunun karakteri bulunamadı.")
+    return
+  end
+
+  local targetRoot = getRoot(targetCharacter)
+  if not targetRoot then
+    speaker:Chat("Oyuncunun karakterinin kökü bulunamadı.")
+    return
+  end
+
+  local speakerCharacter = speaker.Character
+  if not speakerCharacter then
+    speaker:Chat("Senin karakterin bulunamadı.")
+    return
+  end
+
+  local speakerRoot = getRoot(speakerCharacter)
+  if not speakerRoot then
+    speaker:Chat("Senin karakterinin kökü bulunamadı.")
+    return
+  end
+
+  local offset = CFrame.new(0, -1, 0) -- Oyuncunun arkasına TP olmak için
+  local targetPosition = targetRoot.Position
+
+  local tpLoop = RunService.Stepped:Connect(function()
+    speakerRoot.Position = targetPosition + offset
+  end)
+
+  speaker:Chat("**" .. targetPlayer.Name .. "**'in arkasına TP oldun!")
+
+  -- TP loop'u durdurmak için "unbang" komutu ekleyebilirsiniz
+  addcmd("unbang", {"unarkana"}, function(args, speaker)
+    if tpLoop then
+      tpLoop:Disconnect()
+      speaker:Chat("TP loop durduruldu.")
+    end
+  end)
 end)
 
 -- Add the "unbang" command
