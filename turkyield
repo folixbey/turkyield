@@ -1,27 +1,55 @@
-local player = game.Players.LocalPlayer
-local flying = false
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- GUI Oluşturma
-local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-local button = Instance.new("TextButton", screenGui)
+-- Pencere Oluşturma
+local window = LocalPlayer.PlayerGui:Add("ScreenGui")
+local frame = window:Add("Frame")
+frame.Size = UDim2.new(0.3, 0, 0.2, 0)
+frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+frame.BackgroundColor = Color3.fromRGB(240, 240, 240)
+frame.BorderColor = Color3.fromRGB(180, 180, 180)
 
-button.Size = UDim2.new(0, 100, 0, 50)
-button.Position = UDim2.new(0.5, -50, 0.5, -25)
-button.Text = "Fly"
-button.Draggable = true
+-- Uç Butonu
+local flyButton = frame:Add("TextButton")
+flyButton.Text = "Uç"
+flyButton.Size = UDim2.new(0.5, 0, 0.2, 0)
+flyButton.Position = UDim2.new(0, 0.2, 0.5, 0)
+flyButton.BackgroundColor = Color3.fromRGB(0, 128, 0)
+flyButton.TextColor = Color3.fromRGB(255, 255, 255)
 
--- Uçma Fonksiyonu
-local function fly()
-    if flying then return end
-    flying = true
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    humanoid.PlatformStand = true
-    while flying do
-        character.HumanoidRootPart.Velocity = Vector3.new(0, 50, 0)
-        wait(0.1)
+-- İn Butonu
+local unflyButton = frame:Add("TextButton")
+unflyButton.Text = "İn"
+unflyButton.Size = UDim2.new(0.5, 0, 0.2, 0)
+unflyButton.Position = UDim2.new(0, 0, 0.5, 0)
+unflyButton.BackgroundColor = Color3.fromRGB(128, 0, 0)
+unflyButton.TextColor = Color3.fromRGB(255, 255, 255)
+
+-- Uç Butonu İşlevi
+flyButton.MouseButton1Click:Connect(function()
+    ReplicatedStorage.FlyMode = true
+    LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+end)
+
+-- İn Butonu İşlevi
+unflyButton.MouseButton1Click:Connect(function()
+    ReplicatedStorage.FlyMode = false
+end)
+
+-- Uçuş Modu Kontrolü
+while true do
+    if ReplicatedStorage.FlyMode then
+        local character = LocalPlayer.Character
+        local humanoidRootPart = character.HumanoidRootPart
+
+        humanoidRootPart.Velocity = humanoidRootPart.Velocity + Vector3.new(0, 0, 20)
+        humanoidRootPart.FallSpeed = 0
+
+        if humanoidRootPart.Position.Y > 20 then
+            humanoidRootPart.Position = Vector3.new(humanoidRootPart.Position.X, 20, humanoidRootPart.Position.Z)
+        end
     end
-end
 
--- Butona Basıldığında Uçma Başlatma
-button.MouseButton1Click:Connect(fly)
+    wait(0.1)
+end
