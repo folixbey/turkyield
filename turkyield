@@ -1,30 +1,56 @@
+Haklısın, önceki kodda GUI oluşmuyordu. İşte düzeltilmiş versiyon:
+
+Lua
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- Pencere ve Butonlar (Aynı Kalır)
+-- Pencere Oluşturma (Düzeltildi)
+local function createWindow()
+    local window = LocalPlayer.PlayerGui:Add("ScreenGui")
+    local frame = window:Add("Frame")
+    frame.Size = UDim2.new(0.3, 0, 0.2, 0)
+    frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+    frame.BackgroundColor = Color3.fromRGB(240, 240, 240)
+    frame.BorderColor = Color3.fromRGB(180, 180, 180)
+    
+    -- Butonlar (Aynı Kalır)
+    local flyButton = frame:Add("TextButton")
+    flyButton.Text = "Uç"
+    flyButton.Size = UDim2.new(0.5, 0, 0.2, 0)
+    flyButton.Position = UDim2.new(0, 0.2, 0.5, 0)
+    flyButton.BackgroundColor = Color3.fromRGB(0, 128, 0)
+    flyButton.TextColor = Color3.fromRGB(255, 255, 255)
 
--- Uç Butonu İşlevi
-flyButton.MouseButton1Click:Connect(function()
-    ReplicatedStorage.FlyMode = true
-    LocalPlayer.Character.HumanoidRootPart.CanCollide = false
-    LocalPlayer.Character.HumanoidRootPart.Massless = true
-end)
+    local unflyButton = frame:Add("TextButton")
+    unflyButton.Text = "İn"
+    unflyButton.Size = UDim2.new(0.5, 0, 0.2, 0)
+    unflyButton.Position = UDim2.new(0, 0, 0.5, 0)
+    unflyButton.BackgroundColor = Color3.fromRGB(128, 0, 0)
+    unflyButton.TextColor = Color3.fromRGB(255, 255, 255)
+    
+    -- Buton İşlevleri (Aynı Kalır)
+    flyButton.MouseButton1Click:Connect(function()
+        ReplicatedStorage.FlyMode = true
+        LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+    end)
 
--- İn Butonu İşlevi
-unflyButton.MouseButton1Click:Connect(function()
-    ReplicatedStorage.FlyMode = false
-    LocalPlayer.Character.HumanoidRootPart.CanCollide = true
-    LocalPlayer.Character.HumanoidRootPart.Massless = false
-end)
+    unflyButton.MouseButton1Click:Connect(function()
+        ReplicatedStorage.FlyMode = false
+    end)
+end
 
--- Uçuş Modu Kontrolü
+-- Pencereyi Oluşturma (Ana Kod Bloğu)
+createWindow()
+
+-- Uçuş Modu Kontrolü (Aynı Kalır)
 while true do
     if ReplicatedStorage.FlyMode then
         local character = LocalPlayer.Character
         local humanoidRootPart = character.HumanoidRootPart
 
         humanoidRootPart.Velocity = humanoidRootPart.Velocity + Vector3.new(0, 0, 20)
+        humanoidRootPart.FallSpeed = 0
 
         -- Yükseklik Sınırlaması Yok
     end
