@@ -1,64 +1,59 @@
--- Script (LocalScript)
+local player = game.Players.LocalPlayer
+local flying = false
 
-local UIS = game:GetService("UserInputService")
-local char = game.Players.LocalPlayer.Character
+-- GUI Oluşturma
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+local frame = Instance.new("Frame", screenGui)
+local flyButton = Instance.new("TextButton", frame)
+local unflyButton = Instance.new("TextButton", frame)
+local toggleButton = Instance.new("TextButton", screenGui)
 
--- Uçma fonksiyonu
+-- Frame Özellikleri
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+frame.Visible = false
+
+-- Fly Butonu Özellikleri
+flyButton.Size = UDim2.new(0, 180, 0, 40)
+flyButton.Position = UDim2.new(0, 10, 0, 10)
+flyButton.Text = "Fly"
+
+-- Unfly Butonu Özellikleri
+unflyButton.Size = UDim2.new(0, 180, 0, 40)
+unflyButton.Position = UDim2.new(0, 10, 0, 50)
+unflyButton.Text = "Unfly"
+
+-- Menü Toggle Butonu
+toggleButton.Size = UDim2.new(0, 100, 0, 50)
+toggleButton.Position = UDim2.new(0, 10, 0, 10)
+toggleButton.Text = "Menu"
+toggleButton.Draggable = true
+
+-- Uçma Fonksiyonu
 local function fly()
-    char.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0) -- Hız sıfırlama
-
-    -- Tuşlara basıldığında hareket
-    UIS.InputBegan:Connect(function(input, state)
-        if input:GetKeyState("W") then
-            char.HumanoidRootPart.Velocity = char.HumanoidRootPart.Velocity + Vector3.new(0, 0, 1) * 50
-        elseif input:GetKeyState("S") then
-            char.HumanoidRootPart.Velocity = char.HumanoidRootPart.Velocity - Vector3.new(0, 0, 1) * 50
-        elseif input:GetKeyState("A") then
-            char.HumanoidRootPart.Velocity = char.HumanoidRootPart.Velocity + Vector3.new(-1, 0, 0) * 50
-        elseif input:GetKeyState("D") then
-            char.HumanoidRootPart.Velocity = char.HumanoidRootPart.Velocity + Vector3.new(1, 0, 0) * 50
-        end
-    end)
+    if flying then return end
+    flying = true
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.PlatformStand = true
+    while flying do
+        character.HumanoidRootPart.Velocity = Vector3.new(0, 50, 0)
+        wait(0.1)
+    end
 end
 
--- İnme fonksiyonu
+-- İniş Fonksiyonu
 local function unfly()
-    char.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0) -- Hız sıfırlama
-
-    -- Tuşlara basıldığında hareket durdurma
-    UIS.InputBegan:DisconnectAll()
+    if not flying then return end
+    flying = false
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.PlatformStand = false
 end
 
---- GUI Oluşturma ---
-
--- ScreenGUI oluşturma
-local screenGui = script.Parent:Clone()
-screenGui.Parent = game.Players.LocalPlayer.PlayerGui
-
--- Uç buttonu oluşturma
-local flyButton = screenGui:FindFirstChild("FlyButton") or screenGui:Add("TextButton", {
-    Name = "FlyButton",
-    Text = "Uç",
-    Position = { x = 0, y = -50 },
-    Size = { x = 100, y = 20 },
-    BackgroundColor3 = Color3.fromRGB(150, 150, 150), -- Düğme rengi ( isteğe göre değiştirin )
-    TextColor3 = Color3.fromRGB(255, 255, 255), -- Yazı rengi ( isteğe göre değiştirin )
-    AnchorPoint = Vector2.new(0.5, 0.5), -- Düğmeyi ortala
-    Font = Enum.TextFont.ArialBold, -- Yazı tipi ( isteğe göre değiştirin )
-})
-
--- İn buttonu oluşturma
-local unflyButton = screenGui:FindFirstChild("UnflyButton") or screenGui:Add("TextButton", {
-    Name = "UnflyButton",
-    Text = "İn",
-    Position = { x = 120, y = -50 },
-    Size = { x = 100, y = 20 },
-    BackgroundColor3 = Color3.fromRGB(150, 150, 150), -- Düğme rengi ( isteğe göre değiştirin )
-    TextColor3 = Color3.fromRGB(255, 255, 255), -- Yazı rengi ( isteğe göre değiştirin )
-    AnchorPoint = Vector2.new(0.5, 0.5), -- Düğmeyi ortala
-    Font = Enum.TextFont.ArialBold, -- Yazı tipi ( isteğe göre değiştirin )
-})
-
--- Düğmelere tıklama olayları
+-- Buton İşlevleri
 flyButton.MouseButton1Click:Connect(fly)
 unflyButton.MouseButton1Click:Connect(unfly)
+toggleButton.MouseButton1Click:Connect(function()
+    frame.Visible = not frame.Visible
+end)
