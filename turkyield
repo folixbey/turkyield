@@ -1,3 +1,5 @@
+-- Script (LocalScript)
+
 local UIS = game:GetService("UserInputService")
 local char = game.Players.LocalPlayer.Character
 
@@ -27,14 +29,36 @@ local function unfly()
     UIS.InputBegan:DisconnectAll()
 end
 
--- Düğmeler (GUI gereklidir)
-local flyButton = script.Parent:FindFirstChild("FlyButton") -- Buton referansını değiştirin
-local unflyButton = script.Parent:FindFirstChild("UnflyButton") -- Buton referansını değiştirin
+--- GUI Oluşturma ---
 
-if flyButton then
-    flyButton.MouseButton1Click:Connect(fly)
-end
+-- ScreenGUI oluşturma
+local screenGui = script.Parent:Clone()
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
-if unflyButton then
-    unflyButton.MouseButton1Click:Connect(unfly)
-end
+-- Uç buttonu oluşturma
+local flyButton = screenGui:FindFirstChild("FlyButton") or screenGui:Add("TextButton", {
+    Name = "FlyButton",
+    Text = "Uç",
+    Position = { x = 0, y = -50 },
+    Size = { x = 100, y = 20 },
+    BackgroundColor3 = Color3.fromRGB(150, 150, 150), -- Düğme rengi ( isteğe göre değiştirin )
+    TextColor3 = Color3.fromRGB(255, 255, 255), -- Yazı rengi ( isteğe göre değiştirin )
+    AnchorPoint = Vector2.new(0.5, 0.5), -- Düğmeyi ortala
+    Font = Enum.TextFont.ArialBold, -- Yazı tipi ( isteğe göre değiştirin )
+})
+
+-- İn buttonu oluşturma
+local unflyButton = screenGui:FindFirstChild("UnflyButton") or screenGui:Add("TextButton", {
+    Name = "UnflyButton",
+    Text = "İn",
+    Position = { x = 120, y = -50 },
+    Size = { x = 100, y = 20 },
+    BackgroundColor3 = Color3.fromRGB(150, 150, 150), -- Düğme rengi ( isteğe göre değiştirin )
+    TextColor3 = Color3.fromRGB(255, 255, 255), -- Yazı rengi ( isteğe göre değiştirin )
+    AnchorPoint = Vector2.new(0.5, 0.5), -- Düğmeyi ortala
+    Font = Enum.TextFont.ArialBold, -- Yazı tipi ( isteğe göre değiştirin )
+})
+
+-- Düğmelere tıklama olayları
+flyButton.MouseButton1Click:Connect(fly)
+unflyButton.MouseButton1Click:Connect(unfly)
