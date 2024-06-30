@@ -1,5 +1,6 @@
 local player = game.Players.LocalPlayer
 local flying = false
+local speed = 50
 
 -- GUI Oluşturma
 local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
@@ -36,8 +37,11 @@ local function fly()
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild("Humanoid")
     humanoid.PlatformStand = true
+
     while flying do
-        character.HumanoidRootPart.Velocity = Vector3.new(0, 50, 0)
+        local camera = workspace.CurrentCamera
+        local direction = camera.CFrame.LookVector
+        character.HumanoidRootPart.Velocity = direction * speed
         wait(0.1)
     end
 end
@@ -49,6 +53,7 @@ local function unfly()
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild("Humanoid")
     humanoid.PlatformStand = false
+    character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 end
 
 -- Buton İşlevleri
