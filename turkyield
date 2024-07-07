@@ -30,15 +30,15 @@ local function giveTool()
         local character = player.Character or player.CharacterAdded:Wait()
         local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
-        -- Görünmezlik
+        -- Boyutu Küçültme
+        local originalSize = humanoidRootPart.Size
+        local shrinkFactor = 0.5 -- Boyut küçültme faktörü
         for _, part in pairs(character:GetChildren()) do
             if part:IsA("BasePart") then
-                part.Transparency = 1
-                part.CanCollide = false
-            elseif part:IsA("Accessory") then
-                part.Handle.Transparency = 1
+                part.Size = part.Size * shrinkFactor
             end
         end
+
         humanoidRootPart.Anchored = true
 
         -- Işınlanma
@@ -51,14 +51,11 @@ local function giveTool()
         camera.CameraType = Enum.CameraType.Scriptable
         camera.CFrame = CFrame.new(targetPosition + Vector3.new(0, 5, -10), targetPosition)
 
-        -- 10 saniye sonra tekrar görünür olma
+        -- 10 saniye sonra tekrar eski boyuta dönme
         wait(10)
         for _, part in pairs(character:GetChildren()) do
             if part:IsA("BasePart") then
-                part.Transparency = 0
-                part.CanCollide = true
-            elseif part:IsA("Accessory") then
-                part.Handle.Transparency = 0
+                part.Size = part.Size / shrinkFactor
             end
         end
         humanoidRootPart.Anchored = false
