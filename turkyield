@@ -11,10 +11,10 @@ toggleButton.Text = "Tools"
 toggleButton.Draggable = true
 
 -- Tools Verme Fonksiyonu
-local function giveTool()
+local function giveGlideTool()
     local tool = Instance.new("Tool")
+    tool.Name = "Glide"
     tool.RequiresHandle = false
-    tool.Name = "TeleportTool"
 
     local handle = Instance.new("Part")
     handle.Name = "Handle"
@@ -25,46 +25,35 @@ local function giveTool()
 
     tool.Parent = player.Backpack
 
-    tool.Activated:Connect(function()
-        local mouse = player:GetMouse()
+    tool.Equipped:Connect(function()
         local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
         local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
-        -- Boyutu Küçültme
-        local originalSize = humanoidRootPart.Size
-        local shrinkFactor = 0.5 -- Boyut küçültme faktörü
-        for _, part in pairs(character:GetChildren()) do
-            if part:IsA("BasePart") then
-                part.Size = part.Size * shrinkFactor
-            end
-        end
+        -- Animasyon Oluşturma
+        local animation = Instance.new("Animation")
+        animation.AnimationId = "rbxassetid://5319927054" -- Buraya animasyon ID'sini ekleyin
+        local animationTrack = humanoid:LoadAnimation(animation)
 
-        humanoidRootPart.Anchored = true
-
-        -- Işınlanma
-        local targetPosition = mouse.Hit.p
-        humanoidRootPart.CFrame = CFrame.new(targetPosition)
-
-        -- Jumpscare Efekti
-        local camera = workspace.CurrentCamera
-        local originalCameraCFrame = camera.CFrame
-        camera.CameraType = Enum.CameraType.Scriptable
-        camera.CFrame = CFrame.new(targetPosition + Vector3.new(0, 5, -10), targetPosition)
-
-        -- 10 saniye sonra tekrar eski boyuta dönme
-        wait(10)
-        for _, part in pairs(character:GetChildren()) do
-            if part:IsA("BasePart") then
-                part.Size = part.Size / shrinkFactor
-            end
-        end
+        -- Glide Etkinleştirme
         humanoidRootPart.Anchored = false
+        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+        local glideForce = Instance.new("BodyVelocity")
+        glideForce.Velocity = Vector3.new(0, -10, 0) -- Yavaş düşme hızı
+        glideForce.MaxForce = Vector3.new(0, math.huge, 0)
+        glideForce.Parent = humanoidRootPart
 
-        -- Kamerayı eski yerine döndür
-        camera.CameraType = Enum.CameraType.Custom
-        camera.CFrame = originalCameraCFrame
+        -- Animasyonu Oynat
+        animationTrack:Play()
+
+        -- Glide Devredeyken
+        tool.Unequipped:Connect(function()
+            glideForce:Destroy()
+            humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+            animationTrack:Stop()
+        end)
     end)
 end
 
 -- Buton İşlevi
-toggleButton.MouseButton1Click:Connect(giveTool)
+toggleButton.MouseButton1Click:Connect(giveGlideTool)
