@@ -51,8 +51,8 @@ local function giveTool()
         camera.CameraType = Enum.CameraType.Scriptable
         camera.CFrame = CFrame.new(targetPosition + Vector3.new(0, 5, -10), targetPosition)
 
-        -- 1 saniye sonra tekrar görünür olma
-        wait(1)
+        -- 10 saniye sonra tekrar görünür olma
+        wait(10)
         for _, part in pairs(character:GetChildren()) do
             if part:IsA("BasePart") then
                 part.Transparency = 0
