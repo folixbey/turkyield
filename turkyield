@@ -15,6 +15,14 @@ local function giveTool()
     local tool = Instance.new("Tool")
     tool.RequiresHandle = false
     tool.Name = "TeleportTool"
+
+    local handle = Instance.new("Part")
+    handle.Name = "Handle"
+    handle.Size = Vector3.new(1, 1, 1)
+    handle.Transparency = 1
+    handle.CanCollide = false
+    handle.Parent = tool
+
     tool.Parent = player.Backpack
 
     tool.Activated:Connect(function()
