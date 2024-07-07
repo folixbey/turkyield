@@ -39,6 +39,8 @@ local function giveTool()
 
         -- Jumpscare Efekti
         local camera = workspace.CurrentCamera
+        local originalCameraCFrame = camera.CFrame
+        camera.CameraType = Enum.CameraType.Scriptable
         camera.CFrame = CFrame.new(targetPosition + Vector3.new(0, 5, -10), targetPosition)
 
         -- 1 saniye sonra tekrar görünür olma
@@ -52,6 +54,10 @@ local function giveTool()
             end
         end
         humanoidRootPart.Anchored = false
+
+        -- Kamerayı eski yerine döndür
+        camera.CameraType = Enum.CameraType.Custom
+        camera.CFrame = originalCameraCFrame
     end)
 end
 
