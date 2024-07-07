@@ -28,28 +28,17 @@ local function giveGlideTool()
     tool.Equipped:Connect(function()
         local character = player.Character or player.CharacterAdded:Wait()
         local humanoid = character:WaitForChild("Humanoid")
-        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
         -- Animasyon Oluşturma
         local animation = Instance.new("Animation")
         animation.AnimationId = "rbxassetid://5319927054" -- Buraya animasyon ID'sini ekleyin
         local animationTrack = humanoid:LoadAnimation(animation)
 
-        -- Glide Etkinleştirme
-        humanoidRootPart.Anchored = false
-        humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-        local glideForce = Instance.new("BodyVelocity")
-        glideForce.Velocity = Vector3.new(0, -10, 0) -- Yavaş düşme hızı
-        glideForce.MaxForce = Vector3.new(0, math.huge, 0)
-        glideForce.Parent = humanoidRootPart
-
         -- Animasyonu Oynat
         animationTrack:Play()
 
         -- Glide Devredeyken
         tool.Unequipped:Connect(function()
-            glideForce:Destroy()
-            humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
             animationTrack:Stop()
         end)
     end)
