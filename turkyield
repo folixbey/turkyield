@@ -2,34 +2,37 @@ local player = game.Players.LocalPlayer
 
 -- GUI Oluşturma
 local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-local walkAnimationButton = Instance.new("TextButton", screenGui)
+local checkAnimationButton = Instance.new("TextButton", screenGui)
 
--- Walk Animation Butonu
-walkAnimationButton.Size = UDim2.new(0, 200, 0, 50)
-walkAnimationButton.Position = UDim2.new(0, 10, 0, 10)
-walkAnimationButton.Text = "Change Walk Animation"
-walkAnimationButton.Draggable = true
+-- Check Animation ID Butonu
+checkAnimationButton.Size = UDim2.new(0, 200, 0, 50)
+checkAnimationButton.Position = UDim2.new(0, 10, 0, 10)
+checkAnimationButton.Text = "Check Animation ID"
+checkAnimationButton.Draggable = true
 
--- Walk Animation ID
-local newWalkAnimationId = "rbxassetid://5319927054"
+local checkingAnimations = false
 
--- Yürüme Animasyonunu Değiştirme Fonksiyonu
-local function changeWalkAnimation()
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    local animateScript = character:FindFirstChild("Animate")
-
-    if animateScript then
-        -- Yürüme animasyonunu değiştir
-        local walkAnim = animateScript:FindFirstChild("walk")
-        if walkAnim then
-            local walkAnimTrack = walkAnim:FindFirstChild("WalkAnim")
-            if walkAnimTrack then
-                walkAnimTrack.AnimationId = newWalkAnimationId
+-- Animasyon ID'lerini Sohbete Yazdırma Fonksiyonu
+local function toggleAnimationCheck()
+    checkingAnimations = not checkingAnimations
+    
+    if checkingAnimations then
+        checkAnimationButton.Text = "Stop Checking"
+        
+        local function onAnimationPlayed(animTrack)
+            if checkingAnimations then
+                local animId = animTrack.Animation.AnimationId
+                local message = "Playing Animation ID: " .. animId
+                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message, "All")
             end
         end
+        
+        player.Character.Humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+        
+    else
+        checkAnimationButton.Text = "Check Animation ID"
     end
 end
 
 -- Buton İşlevi
-walkAnimationButton.MouseButton1Click:Connect(changeWalkAnimation)
+checkAnimationButton.MouseButton1Click:Connect(toggleAnimationCheck)
