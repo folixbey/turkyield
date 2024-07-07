@@ -21,29 +21,49 @@ animationIdLabel.BackgroundTransparency = 0.5
 animationIdLabel.Visible = false
 
 local checkingAnimations = false
+local lastAnimId = nil
 
 -- Animasyon ID'lerini Etikete Yazdırma Fonksiyonu
 local function toggleAnimationCheck()
     checkingAnimations = not checkingAnimations
     
     if checkingAnimations then
-        checkAnimationButton.Text = "Stop Id"
+        checkAnimationButton.Text = "Stop Checking"
         animationIdLabel.Visible = true
         
         local function onAnimationPlayed(animTrack)
             if checkingAnimations then
                 local animId = animTrack.Animation.AnimationId
-                animationIdLabel.Text = "Current Animation ID: " .. animId
+                if animId ~= lastAnimId then
+                    lastAnimId = animId
+                    animationIdLabel.Text = "Current Animation ID: " .. animId
+                    
+                    -- 5 saniye bekle ve ID'yi güncelle
+                    wait(5)
+                    if animId == lastAnimId then
+                        animationIdLabel.Text = "Current Animation ID: None"
+                        lastAnimId = nil
+                    end
+                end
             end
         end
         
         player.Character.Humanoid.AnimationPlayed:Connect(onAnimationPlayed)
         
     else
-        checkAnimationButton.Text = "Check ID"
+        checkAnimationButton.Text = "Check Animation ID"
         animationIdLabel.Visible = false
+    end
+end
+
+-- ID'yi Kopyalama Fonksiyonu
+local function copyToClipboard()
+    if lastAnimId then
+        setclipboard(lastAnimId)
+        animationIdLabel.Text = "Copied: " .. lastAnimId
     end
 end
 
 -- Buton İşlevi
 checkAnimationButton.MouseButton1Click:Connect(toggleAnimationCheck)
+animationIdLabel.MouseButton1Click:Connect(copyToClipboard)
