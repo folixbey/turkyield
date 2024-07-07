@@ -27,7 +27,7 @@ local function toggleAnimationCheck()
     checkingAnimations = not checkingAnimations
     
     if checkingAnimations then
-        checkAnimationButton.Text = "Stop Checking"
+        checkAnimationButton.Text = "Stop Id"
         animationIdLabel.Visible = true
         
         local function onAnimationPlayed(animTrack)
@@ -40,7 +40,7 @@ local function toggleAnimationCheck()
         player.Character.Humanoid.AnimationPlayed:Connect(onAnimationPlayed)
         
     else
-        checkAnimationButton.Text = "Check Animation ID"
+        checkAnimationButton.Text = "Check ID"
         animationIdLabel.Visible = false
     end
 end
