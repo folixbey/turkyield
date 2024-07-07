@@ -2,47 +2,34 @@ local player = game.Players.LocalPlayer
 
 -- GUI Oluşturma
 local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-local toggleButton = Instance.new("TextButton", screenGui)
+local walkAnimationButton = Instance.new("TextButton", screenGui)
 
--- Menü Toggle Butonu
-toggleButton.Size = UDim2.new(0, 100, 0, 50)
-toggleButton.Position = UDim2.new(0, 10, 0, 10)
-toggleButton.Text = "Tools"
-toggleButton.Draggable = true
+-- Walk Animation Butonu
+walkAnimationButton.Size = UDim2.new(0, 200, 0, 50)
+walkAnimationButton.Position = UDim2.new(0, 10, 0, 10)
+walkAnimationButton.Text = "Change Walk Animation"
+walkAnimationButton.Draggable = true
 
--- Tools Verme Fonksiyonu
-local function giveGlideTool()
-    local tool = Instance.new("Tool")
-    tool.Name = "Glide"
-    tool.RequiresHandle = false
+-- Walk Animation ID
+local newWalkAnimationId = "rbxassetid://5319927054"
 
-    local handle = Instance.new("Part")
-    handle.Name = "Handle"
-    handle.Size = Vector3.new(1, 1, 1)
-    handle.Transparency = 1
-    handle.CanCollide = false
-    handle.Parent = tool
+-- Yürüme Animasyonunu Değiştirme Fonksiyonu
+local function changeWalkAnimation()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local animateScript = character:FindFirstChild("Animate")
 
-    tool.Parent = player.Backpack
-
-    tool.Equipped:Connect(function()
-        local character = player.Character or player.CharacterAdded:Wait()
-        local humanoid = character:WaitForChild("Humanoid")
-
-        -- Animasyon Oluşturma
-        local animation = Instance.new("Animation")
-        animation.AnimationId = "rbxassetid://5319927054" -- Buraya animasyon ID'sini ekleyin
-        local animationTrack = humanoid:LoadAnimation(animation)
-
-        -- Animasyonu Oynat
-        animationTrack:Play()
-
-        -- Glide Devredeyken
-        tool.Unequipped:Connect(function()
-            animationTrack:Stop()
-        end)
-    end)
+    if animateScript then
+        -- Yürüme animasyonunu değiştir
+        local walkAnim = animateScript:FindFirstChild("walk")
+        if walkAnim then
+            local walkAnimTrack = walkAnim:FindFirstChild("WalkAnim")
+            if walkAnimTrack then
+                walkAnimTrack.AnimationId = newWalkAnimationId
+            end
+        end
+    end
 end
 
 -- Buton İşlevi
-toggleButton.MouseButton1Click:Connect(giveGlideTool)
+walkAnimationButton.MouseButton1Click:Connect(changeWalkAnimation)
