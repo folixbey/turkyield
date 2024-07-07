@@ -3,6 +3,7 @@ local player = game.Players.LocalPlayer
 -- GUI Oluşturma
 local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 local checkAnimationButton = Instance.new("TextButton", screenGui)
+local animationIdLabel = Instance.new("TextLabel", screenGui)
 
 -- Check Animation ID Butonu
 checkAnimationButton.Size = UDim2.new(0, 200, 0, 50)
@@ -10,20 +11,29 @@ checkAnimationButton.Position = UDim2.new(0, 10, 0, 10)
 checkAnimationButton.Text = "Check Animation ID"
 checkAnimationButton.Draggable = true
 
+-- Animasyon ID Etiketi
+animationIdLabel.Size = UDim2.new(0, 300, 0, 50)
+animationIdLabel.Position = UDim2.new(0, 10, 0, 70)
+animationIdLabel.Text = "Current Animation ID: None"
+animationIdLabel.TextColor3 = Color3.new(1, 1, 1)
+animationIdLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+animationIdLabel.BackgroundTransparency = 0.5
+animationIdLabel.Visible = false
+
 local checkingAnimations = false
 
--- Animasyon ID'lerini Sohbete Yazdırma Fonksiyonu
+-- Animasyon ID'lerini Etikete Yazdırma Fonksiyonu
 local function toggleAnimationCheck()
     checkingAnimations = not checkingAnimations
     
     if checkingAnimations then
         checkAnimationButton.Text = "Stop Checking"
+        animationIdLabel.Visible = true
         
         local function onAnimationPlayed(animTrack)
             if checkingAnimations then
                 local animId = animTrack.Animation.AnimationId
-                local message = "Playing Animation ID: " .. animId
-                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message, "All")
+                animationIdLabel.Text = "Current Animation ID: " .. animId
             end
         end
         
@@ -31,6 +41,7 @@ local function toggleAnimationCheck()
         
     else
         checkAnimationButton.Text = "Check Animation ID"
+        animationIdLabel.Visible = false
     end
 end
 
