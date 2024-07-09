@@ -4,7 +4,7 @@ local userInputService = game:GetService("UserInputService")
 -- GUI Oluşturma
 local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 local toggleButton = Instance.new("TextButton", screenGui)
-local infoLabel = Instance.new("TextLabel", screenGui)
+local infoButton = Instance.new("TextButton", screenGui)
 
 -- Toggle Butonu Ayarları
 toggleButton.Size = UDim2.new(0, 100, 0, 50)
@@ -12,14 +12,15 @@ toggleButton.Position = UDim2.new(0, 10, 0, 10)
 toggleButton.Text = "Aktif Et"
 toggleButton.Draggable = true
 
--- Info Label Ayarları
-infoLabel.Size = UDim2.new(0, 300, 0, 50)
-infoLabel.Position = UDim2.new(0, 10, 0, 70)
-infoLabel.Text = "Tıklanan GUI Elemanının İsmi: "
-infoLabel.TextColor3 = Color3.new(1, 1, 1)
-infoLabel.BackgroundColor3 = Color3.new(0, 0, 0)
-infoLabel.BackgroundTransparency = 0.5
-infoLabel.Visible = false
+-- Info Butonu Ayarları
+infoButton.Size = UDim2.new(0, 300, 0, 50)
+infoButton.Position = UDim2.new(0, 10, 0, 70)
+infoButton.Text = "Tıklanan GUI Elemanının İsmi: "
+infoButton.TextColor3 = Color3.new(1, 1, 1)
+infoButton.BackgroundColor3 = Color3.new(0, 0, 0)
+infoButton.BackgroundTransparency = 0.5
+infoButton.Visible = false
+infoButton.Draggable = true
 
 local active = false
 
@@ -29,8 +30,8 @@ local function onGuiElementClicked(input)
         local target = player.PlayerGui:GetGuiObjectsAtPosition(input.Position.X, input.Position.Y)
         if #target > 0 then
             local guiElement = target[1]
-            infoLabel.Text = "Tıklanan GUI Elemanının İsmi: " .. guiElement.Name
-            infoLabel.Visible = true
+            infoButton.Text = "Tıklanan GUI Elemanının İsmi: " .. guiElement.Name
+            infoButton.Visible = true
         end
     end
 end
@@ -40,7 +41,7 @@ toggleButton.MouseButton1Click:Connect(function()
     active = not active
     toggleButton.Text = active and "Deaktif Et" or "Aktif Et"
     if not active then
-        infoLabel.Visible = false
+        infoButton.Visible = false
     end
 end)
 
