@@ -1,51 +1,90 @@
 local player = game.Players.LocalPlayer
+local players = game:GetService("Players")
+local camera = workspace.CurrentCamera
 
--- Bildirim Fonksiyonu
-local function createNotification()
-    local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-    local frame = Instance.new("Frame", screenGui)
-    local imageLabel = Instance.new("ImageLabel", frame)
-    local titleLabel = Instance.new("TextLabel", frame)
-    local textLabel = Instance.new("TextLabel", frame)
+-- GUI Oluşturma
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+local mainFrame = Instance.new("Frame", screenGui)
+local titleLabel = Instance.new("TextLabel", mainFrame)
+local switchButton = Instance.new("TextButton", mainFrame)
+local exitButton = Instance.new("TextButton", mainFrame)
+local resetButton = Instance.new("TextButton", mainFrame)
+local playerInfoLabel = Instance.new("TextLabel", mainFrame)
 
-    -- Frame Ayarları
-    frame.Size = UDim2.new(0, 400, 0, 150)
-    frame.Position = UDim2.new(1, -420, 1, -170)
-    frame.BackgroundColor3 = Color3.new(0, 0, 0)
-    frame.BackgroundTransparency = 0.5
+local randomPlayer
 
-    -- Resim Ayarları
-    imageLabel.Size = UDim2.new(0, 100, 0, 100)
-    imageLabel.Position = UDim2.new(0, 10, 0, 25)
-    imageLabel.Image = "rbxassetid://<YOUR_IMAGE_ASSET_ID>"  -- Buraya resim asset ID'sini ekleyin
-    imageLabel.BackgroundTransparency = 1
+-- Ana Menü Ayarları
+mainFrame.Size = UDim2.new(0, 300, 0, 200)
+mainFrame.Position = UDim2.new(0.5, -150, 0, 50)
+mainFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+mainFrame.Visible = false
 
-    -- Başlık Ayarları
-    titleLabel.Size = UDim2.new(0, 270, 0, 50)
-    titleLabel.Position = UDim2.new(0, 120, 0, 10)
-    titleLabel.Text = "Türk Gui"
-    titleLabel.TextColor3 = Color3.new(1, 1, 1)
-    titleLabel.TextScaled = true
-    titleLabel.BackgroundTransparency = 1
+-- Başlık Ayarları
+titleLabel.Size = UDim2.new(1, 0, 0, 50)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.Text = "Admin Izleme Sistemi"
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.BackgroundTransparency = 1
 
-    -- Metin Ayarları
-    textLabel.Size = UDim2.new(0, 270, 0, 70)
-    textLabel.Position = UDim2.new(0, 120, 0, 60)
-    textLabel.Text = "En Iyi Script\n\nfolixbey Tarafından Yapılmıştır."
-    textLabel.TextColor3 = Color3.new(1, 1, 1)
-    textLabel.TextScaled = true
-    textLabel.BackgroundTransparency = 1
+-- Geçiş Butonu Ayarları
+switchButton.Size = UDim2.new(0.9, 0, 0, 50)
+switchButton.Position = UDim2.new(0.05, 0, 0.3, 0)
+switchButton.Text = "Geç"
+switchButton.TextColor3 = Color3.new(1, 1, 1)
+switchButton.BackgroundColor3 = Color3.new(0.4, 0.4, 0.4)
 
-    screenGui.Parent = player:WaitForChild("PlayerGui")
+-- Çıkış Butonu Ayarları
+exitButton.Size = UDim2.new(0.9, 0, 0, 50)
+exitButton.Position = UDim2.new(0.05, 0, 0.55, 0)
+exitButton.Text = "Çık"
+exitButton.TextColor3 = Color3.new(1, 1, 1)
+exitButton.BackgroundColor3 = Color3.new(0.4, 0.4, 0.4)
 
-    wait(5)  -- Bildirimin ne kadar süreyle görüneceğini belirleyin
+-- Geri Alma Butonu Ayarları
+resetButton.Size = UDim2.new(0.9, 0, 0, 50)
+resetButton.Position = UDim2.new(0.05, 0, 0.8, 0)
+resetButton.Text = "Geri Al"
+resetButton.TextColor3 = Color3.new(1, 1, 1)
+resetButton.BackgroundColor3 = Color3.new(0.4, 0.4, 0.4)
 
-    screenGui:Destroy()
+-- Oyuncu Bilgisi Etiketi Ayarları
+playerInfoLabel.Size = UDim2.new(1, 0, 0, 50)
+playerInfoLabel.Position = UDim2.new(0, 0, 1, 0)
+playerInfoLabel.TextColor3 = Color3.new(1, 1, 1)
+playerInfoLabel.BackgroundTransparency = 1
+
+local function showRandomPlayer()
+    local allPlayers = players:GetPlayers()
+    if #allPlayers > 1 then
+        repeat
+            randomPlayer = allPlayers[math.random(1, #allPlayers)]
+        until randomPlayer ~= player
+
+        camera.CameraSubject = randomPlayer.Character and randomPlayer.Character:FindFirstChildWhichIsA("Humanoid")
+        playerInfoLabel.Text = "Izlenen Oyuncu: " .. randomPlayer.DisplayName .. " (" .. randomPlayer.Name .. ")"
+    end
 end
 
--- Bildirimi 3 kez göster
-for i = 1, 3 do
-    createNotification()
+local function resetCamera()
+    camera.CameraSubject = player.Character and player.Character:FindFirstChildWhichIsA("Humanoid")
+    playerInfoLabel.Text = "Kendi Kamerana Geri Dönüldü."
 end
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/folixbey/turkyield/main/turkiyedl"))()
+-- Menü Toggle Butonu
+local toggleButton = Instance.new("TextButton", screenGui)
+toggleButton.Size = UDim2.new(0, 100, 0, 50)
+toggleButton.Position = UDim2.new(0, 10, 0, 10)
+toggleButton.Text = "Menü"
+toggleButton.Draggable = true
+
+toggleButton.MouseButton1Click:Connect(function()
+    mainFrame.Visible = not mainFrame.Visible
+end)
+
+-- Buton İşlevleri
+switchButton.MouseButton1Click:Connect(showRandomPlayer)
+exitButton.MouseButton1Click:Connect(function()
+    mainFrame.Visible = false
+end)
+resetButton.MouseButton1Click:Connect(resetCamera)
+
