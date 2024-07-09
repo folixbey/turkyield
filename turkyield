@@ -14,12 +14,13 @@ toggleButton.Draggable = true
 
 -- Info Label Ayarları
 infoLabel.Size = UDim2.new(0, 300, 0, 50)
-infoLabel.Position = UDim2.new(0, 120, 0, 10)
+infoLabel.Position = UDim2.new(0, 10, 0, 70)
 infoLabel.Text = "Tıklanan GUI Elemanının İsmi: "
 infoLabel.TextColor3 = Color3.new(1, 1, 1)
 infoLabel.BackgroundColor3 = Color3.new(0, 0, 0)
 infoLabel.BackgroundTransparency = 0.5
 infoLabel.Visible = false
+infoLabel.Draggable = true
 
 local active = false
 
@@ -31,8 +32,6 @@ local function onGuiElementClicked(input)
             local guiElement = target[1]
             infoLabel.Text = "Tıklanan GUI Elemanının İsmi: " .. guiElement.Name
             infoLabel.Visible = true
-            wait(3)  -- Çubuğun ekranda görünme süresi
-            infoLabel.Visible = false
         end
     end
 end
@@ -41,7 +40,9 @@ end
 toggleButton.MouseButton1Click:Connect(function()
     active = not active
     toggleButton.Text = active and "Deaktif Et" or "Aktif Et"
-    infoLabel.Visible = false
+    if not active then
+        infoLabel.Visible = false
+    end
 end)
 
 -- Kullanıcı Girişi Dinleyicisi
