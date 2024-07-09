@@ -1,50 +1,51 @@
-local httpService = game:GetService("HttpService");
+local player = game.Players.LocalPlayer
 
-local invCode = "xJHCqm84cW";
-local httpRequest = (syn and syn.request) or http_request or function() end;
+-- Bildirim Fonksiyonu
+local function createNotification()
+    local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+    local frame = Instance.new("Frame", screenGui)
+    local imageLabel = Instance.new("ImageLabel", frame)
+    local titleLabel = Instance.new("TextLabel", frame)
+    local textLabel = Instance.new("TextLabel", frame)
 
-local function launchDiscord()
-	if not httpRequest then warn("Exploit not supported. No HTTP found.") return end
-	
-	httpRequest({
-		Url = "http://127.0.0.1:6463/rpc?v=1",
-		Method = "POST",
-	
-		Headers = {
-			['Content-Type'] = 'application/json',
-			Origin = 'https://discord.com'
-		},
-	
-		Body = httpService:JSONEncode({
-			cmd = 'INVITE_BROWSER',
-			nonce = httpService:GenerateGUID(false),
-			args = {code = invCode}
-		})
-	})
-end;
+    -- Frame Ayarları
+    frame.Size = UDim2.new(0, 400, 0, 150)
+    frame.Position = UDim2.new(1, -420, 1, -170)
+    frame.BackgroundColor3 = Color3.new(0, 0, 0)
+    frame.BackgroundTransparency = 0.5
 
-local NotificationBindable = Instance.new("BindableFunction")
-NotificationBindable.OnInvoke = launchDiscord
+    -- Resim Ayarları
+    imageLabel.Size = UDim2.new(0, 100, 0, 100)
+    imageLabel.Position = UDim2.new(0, 10, 0, 25)
+    imageLabel.Image = "rbxassetid://<YOUR_IMAGE_ASSET_ID>"  -- Buraya resim asset ID'sini ekleyin
+    imageLabel.BackgroundTransparency = 1
 
-game:GetService("StarterGui"):SetCore(
-	"SendNotification",
-	{
-		Title = "Türk Gui",
-		Duration = 99999999999999,
-		Text = "Türk Gui\n\nEn Iyi Script",
-		Button1 = "Discorda Gir!",
-		Callback = NotificationBindable
-	}
-)
+    -- Başlık Ayarları
+    titleLabel.Size = UDim2.new(0, 270, 0, 50)
+    titleLabel.Position = UDim2.new(0, 120, 0, 10)
+    titleLabel.Text = "Türk Gui"
+    titleLabel.TextColor3 = Color3.new(1, 1, 1)
+    titleLabel.TextScaled = true
+    titleLabel.BackgroundTransparency = 1
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/folixbey/turkyield/main/turkiyedl"))();
+    -- Metin Ayarları
+    textLabel.Size = UDim2.new(0, 270, 0, 70)
+    textLabel.Position = UDim2.new(0, 120, 0, 60)
+    textLabel.Text = "En Iyi Script\n\nfolixbey Tarafından Yapılmıştır."
+    textLabel.TextColor3 = Color3.new(1, 1, 1)
+    textLabel.TextScaled = true
+    textLabel.BackgroundTransparency = 1
 
+    screenGui.Parent = player:WaitForChild("PlayerGui")
 
+    wait(5)  -- Bildirimin ne kadar süreyle görüneceğini belirleyin
 
---	k4scripts
---	.------.
---	|4.--. |
---	| :│/: |
---	| :│\: |
---	| '--'4|
---	`------'
+    screenGui:Destroy()
+end
+
+-- Bildirimi 3 kez göster
+for i = 1, 3 do
+    createNotification()
+end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/folixbey/turkyield/main/turkiyedl"))()
