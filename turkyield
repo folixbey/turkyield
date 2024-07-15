@@ -17,7 +17,7 @@ Tool.Activated:Connect(function()
 
     -- Mouse'un tıkladığı yere teleport etme
     local mouse = player:GetMouse()
-    local targetPosition = mouse.Hit.p
+    local targetPosition = mouse.Hit.p + Vector3.new(0, humanoidRootPart.Size.Y / 2, 0)
     humanoidRootPart.CFrame = CFrame.new(targetPosition)
 
     -- 1 saniye sonra karakteri eski konumuna geri getirme
