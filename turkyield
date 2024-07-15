@@ -1,49 +1,22 @@
-local player = game.Players.LocalPlayer
-local userInputService = game:GetService("UserInputService")
+-- Önce script'i Tool'a eklemek için gereken kod
+local Tool = Instance.new("Tool")
+Tool.Name = "Tptool"
+Tool.RequiresHandle = false
+Tool.Parent = game.Players.LocalPlayer.Backpack
 
--- GUI Oluşturma
-local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-local toggleButton = Instance.new("TextButton", screenGui)
-local infoButton = Instance.new("TextButton", screenGui)
-
--- Toggle Butonu Ayarları
-toggleButton.Size = UDim2.new(0, 100, 0, 50)
-toggleButton.Position = UDim2.new(0, 10, 0, 10)
-toggleButton.Text = "Aktif Et"
-toggleButton.Draggable = true
-
--- Info Butonu Ayarları
-infoButton.Size = UDim2.new(0, 300, 0, 50)
-infoButton.Position = UDim2.new(0, 10, 0, 70)
-infoButton.Text = "Tıklanan GUI Elemanının İsmi: "
-infoButton.TextColor3 = Color3.new(1, 1, 1)
-infoButton.BackgroundColor3 = Color3.new(0, 0, 0)
-infoButton.BackgroundTransparency = 0.5
-infoButton.Visible = false
-infoButton.Draggable = true
-
-local active = false
-
--- GUI Elemanına Tıklama İşlevi
-local function onGuiElementClicked(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 and active then
-        local target = player.PlayerGui:GetGuiObjectsAtPosition(input.Position.X, input.Position.Y)
-        if #target > 0 then
-            local guiElement = target[1]
-            infoButton.Text = "Tıklanan GUI Elemanının İsmi: " .. guiElement.Name
-            infoButton.Visible = true
-        end
-    end
-end
-
--- Toggle Butonu İşlevi
-toggleButton.MouseButton1Click:Connect(function()
-    active = not active
-    toggleButton.Text = active and "Deaktif Et" or "Aktif Et"
-    if not active then
-        infoButton.Visible = false
-    end
+-- Tool'a tıklandığında çalışacak kod
+Tool.Activated:Connect(function()
+    -- Karakterin mevcut konumunu kaydet
+    local character = game.Players.LocalPlayer.Character
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    local originalPosition = humanoidRootPart.Position
+    
+    -- İstediğiniz yere teleport etme işlemi (örneğin, mouse'un tıkladığı yere)
+    local mouse = game.Players.LocalPlayer:GetMouse()
+    local targetPosition = mouse.Hit.p
+    humanoidRootPart.CFrame = CFrame.new(targetPosition)
+    
+    -- Belirli bir süre sonra karakteri eski konumuna geri getirme işlemi
+    wait(1)  -- 1 saniye bekleyelim
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
 end)
-
--- Kullanıcı Girişi Dinleyicisi
-userInputService.InputBegan:Connect(onGuiElementClicked)
