@@ -1,6 +1,6 @@
 -- Tool'u oluşturma ve oyuncunun envanterine ekleme
 local Tool = Instance.new("Tool")
-Tool.Name = "sikinator"
+Tool.Name = "Jumpscare Atma Esyasi"
 Tool.RequiresHandle = false
 Tool.Parent = game.Players.LocalPlayer.Backpack
 
@@ -22,6 +22,6 @@ Tool.Activated:Connect(function()
     humanoidRootPart.CFrame = CFrame.new(targetPosition)
 
     -- 1 saniye sonra karakteri eski konumuna geri getirme
-    wait(1)
+    wait(0.3)
     humanoidRootPart.CFrame = originalCFrame
 end)
