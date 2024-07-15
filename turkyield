@@ -1,4 +1,4 @@
--- Önce script'i Tool'a eklemek için gereken kod
+-- Tool'u oluşturma ve oyuncunun envanterine ekleme
 local Tool = Instance.new("Tool")
 Tool.Name = "Tptool"
 Tool.RequiresHandle = false
@@ -6,17 +6,24 @@ Tool.Parent = game.Players.LocalPlayer.Backpack
 
 -- Tool'a tıklandığında çalışacak kod
 Tool.Activated:Connect(function()
-    -- Karakterin mevcut konumunu kaydet
-    local character = game.Players.LocalPlayer.Character
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if not character then return end
+
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    local originalPosition = humanoidRootPart.Position
-    
-    -- İstediğiniz yere teleport etme işlemi (örneğin, mouse'un tıkladığı yere)
-    local mouse = game.Players.LocalPlayer:GetMouse()
+
+    -- Mevcut konumları kaydet
+    local originalPosition = humanoidRootPart.CFrame
+    local camera = game.Workspace.CurrentCamera
+    local originalCameraCFrame = camera.CFrame
+
+    -- Mouse'un tıkladığı yere teleport etme
+    local mouse = player:GetMouse()
     local targetPosition = mouse.Hit.p
     humanoidRootPart.CFrame = CFrame.new(targetPosition)
-    
-    -- Belirli bir süre sonra karakteri eski konumuna geri getirme işlemi
-    wait(1)  -- 1 saniye bekleyelim
-    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+
+    -- 1 saniye sonra karakteri ve kamerayı eski konumlarına geri getirme
+    wait(1)
+    humanoidRootPart.CFrame = originalPosition
+    camera.CFrame = originalCameraCFrame
 end)
