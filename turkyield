@@ -1,6 +1,6 @@
 -- Tool'u oluşturma ve oyuncunun envanterine ekleme
 local Tool = Instance.new("Tool")
-Tool.Name = "sikici"
+Tool.Name = "Tptool"
 Tool.RequiresHandle = false
 Tool.Parent = game.Players.LocalPlayer.Backpack
 
@@ -12,10 +12,8 @@ Tool.Activated:Connect(function()
 
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
-    -- Mevcut konumları kaydet
+    -- Mevcut konumu kaydet
     local originalPosition = humanoidRootPart.CFrame
-    local camera = game.Workspace.CurrentCamera
-    local originalCameraCFrame = camera.CFrame
 
     -- Mouse'un tıkladığı yere teleport etme
     local mouse = player:GetMouse()
@@ -23,9 +21,6 @@ Tool.Activated:Connect(function()
     humanoidRootPart.CFrame = CFrame.new(targetPosition)
 
     -- 1 saniye sonra karakteri eski konumuna geri getirme
-    wait(0.4)
+    wait(1)
     humanoidRootPart.CFrame = originalPosition
-
-    -- Kamerayı eski konumuna geri döndür
-    camera.CFrame = originalCameraCFrame
 end)
