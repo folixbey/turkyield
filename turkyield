@@ -1,6 +1,6 @@
 -- Tool'u oluşturma ve oyuncunun envanterine ekleme
 local Tool = Instance.new("Tool")
-Tool.Name = "Tptool"
+Tool.Name = "sikici"
 Tool.RequiresHandle = false
 Tool.Parent = game.Players.LocalPlayer.Backpack
 
@@ -22,8 +22,10 @@ Tool.Activated:Connect(function()
     local targetPosition = mouse.Hit.p
     humanoidRootPart.CFrame = CFrame.new(targetPosition)
 
-    -- 1 saniye sonra karakteri ve kamerayı eski konumlarına geri getirme
-    wait(1)
+    -- 1 saniye sonra karakteri eski konumuna geri getirme
+    wait(0.4)
     humanoidRootPart.CFrame = originalPosition
+
+    -- Kamerayı eski konumuna geri döndür
     camera.CFrame = originalCameraCFrame
 end)
