@@ -1,50 +1,1336 @@
--- List of owners
-local owners = {}
+-- Gui to Lua
+-- Version: 3
 
--- Function to check if a player is an owner
-local function isOwner(playerName)
-    for _, owner in ipairs(owners) do
-        if owner == playerName then
-            return true
-        end
-    end
-    return false
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("ImageLabel")
+local Border = Instance.new("Frame")
+local DesignLine = Instance.new("Frame")
+local Close = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local User = Instance.new("TextBox")
+local TextBox_Roundify_12px = Instance.new("ImageLabel")
+local Page1 = Instance.new("Frame")
+local BodyGuard = Instance.new("TextButton")
+local Bong_Cig = Instance.new("TextButton")
+local CreepNPreech = Instance.new("TextButton")
+local Char = Instance.new("TextButton")
+local Claws = Instance.new("TextButton")
+local Flamethrower = Instance.new("TextButton")
+local GoodBadCop = Instance.new("TextButton")
+local GrabGun = Instance.new("TextButton")
+local ServerAdmin = Instance.new("TextButton")
+local KrystalDance = Instance.new("TextButton")
+local Maddox = Instance.new("TextButton")
+local MrByebye = Instance.new("TextButton")
+local MrPixel = Instance.new("TextButton")
+local Playtime = Instance.new("TextButton")
+local Quantom = Instance.new("TextButton")
+local SSFucker = Instance.new("TextButton")
+local Tsunami = Instance.new("TextButton")
+local Chronos = Instance.new("TextButton")
+local VoodoChild = Instance.new("TextButton")
+local Whip = Instance.new("TextButton")
+local Next = Instance.new("TextButton")
+local Page2 = Instance.new("Frame")
+local Previous = Instance.new("TextButton")
+local Dex = Instance.new("TextButton")
+local BlindReaper = Instance.new("TextButton")
+local Hot = Instance.new("TextButton")
+local Zythian = Instance.new("TextButton")
+local BrutalO = Instance.new("TextButton")
+local Executor = Instance.new("TextButton")
+local UTG = Instance.new("TextButton")
+local Calamity = Instance.new("TextButton")
+local Next_2 = Instance.new("TextButton")
+local Bigsmoke = Instance.new("TextButton")
+local Glockicider = Instance.new("TextButton")
+local Despacito = Instance.new("TextButton")
+local Jojo = Instance.new("TextButton")
+local Maniac = Instance.new("TextButton")
+local Toast = Instance.new("TextButton")
+local Chainiac = Instance.new("TextButton")
+local Minimize = Instance.new("TextButton")
+local R6 = Instance.new("TextButton")
+local Page3 = Instance.new("Frame")
+local Next_3 = Instance.new("TextButton")
+local BSOD = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local TextLabel_4 = Instance.new("TextLabel")
+local Kick = Instance.new("TextButton")
+local Shutdown = Instance.new("TextButton")
+local TextLabel_5 = Instance.new("TextLabel")
+local Pee = Instance.new("TextButton")
+local Keem = Instance.new("TextButton")
+local Rickroll = Instance.new("TextButton")
+local Nuke = Instance.new("TextButton")
+local Condo = Instance.new("TextButton")
+local Previous_2 = Instance.new("TextButton")
+local TextLabel_6 = Instance.new("TextLabel")
+local Page4 = Instance.new("Frame")
+local Previous_3 = Instance.new("TextButton")
+local Creditpage = Instance.new("TextButton")
+local Genocider = Instance.new("TextButton")
+local Shedl = Instance.new("TextButton")
+local Wretch = Instance.new("TextButton")
+local Sin = Instance.new("TextButton")
+local Gravity = Instance.new("TextButton")
+local Katana = Instance.new("TextButton")
+local Scout = Instance.new("TextButton")
+local Aqua = Instance.new("TextButton")
+local Influx = Instance.new("TextButton")
+local Credits = Instance.new("Frame")
+local Credits1 = Instance.new("TextLabel")
+local Credits2 = Instance.new("TextLabel")
+local Credits3 = Instance.new("TextLabel")
+local _3126394436Fire = Instance.new("TextLabel")
+local Back = Instance.new("TextButton")
+local Open = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.new(1, 1, 1)
+Main.BackgroundTransparency = 1
+Main.Position = UDim2.new(0.238055289, 0, 0.0892800912, 0)
+Main.Size = UDim2.new(0, 322, 0, 418)
+Main.Image = "rbxassetid://2851926732"
+Main.ImageColor3 = Color3.new(0.917647, 0.27451, 0.188235)
+Main.ScaleType = Enum.ScaleType.Slice
+Main.SliceCenter = Rect.new(12, 12, 12, 12)
+
+Border.Name = "Border"
+Border.Parent = Main
+Border.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Border.BorderSizePixel = 0
+Border.Position = UDim2.new(-0.00267073512, 0, -0.00262386375, 0)
+Border.Size = UDim2.new(0, 323, 0, 21)
+
+DesignLine.Name = "Design Line"
+DesignLine.Parent = Main
+DesignLine.BackgroundColor3 = Color3.new(0.376471, 0.00392157, 0.00784314)
+DesignLine.BorderSizePixel = 0
+DesignLine.Position = UDim2.new(-0.00267080776, 0, 0.0461491123, 0)
+DesignLine.Size = UDim2.new(0, 323, 0, 38)
+
+Close.Name = "Close"
+Close.Parent = Main
+Close.BackgroundColor3 = Color3.new(0, 0, 0)
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0.786730051, 0, -0.00262386375, 0)
+Close.Size = UDim2.new(0, 34, 0, 20)
+Close.Font = Enum.Font.SourceSansLight
+Close.Text = "❌"
+Close.TextColor3 = Color3.new(1, 0, 0)
+Close.TextSize = 19
+Close.TextStrokeColor3 = Color3.new(1, 1, 1)
+Close.TextWrapped = true
+
+TextLabel.Parent = Main
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.Position = UDim2.new(0.333313942, 0, 0.047846891, 0)
+TextLabel.Size = UDim2.new(0, 116, 0, 37)
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.Text = "Super SS V5"
+TextLabel.TextColor3 = Color3.new(1, 1, 1)
+TextLabel.TextSize = 20
+
+User.Name = "User"
+User.Parent = Main
+User.BackgroundColor3 = Color3.new(0.917647, 0.27451, 0.188235)
+User.BackgroundTransparency = 1
+User.BorderSizePixel = 0
+User.Position = UDim2.new(-0.00310559012, 0, 0.961722493, 0)
+User.Size = UDim2.new(0, 317, 0, 50)
+User.ZIndex = 100
+User.Font = Enum.Font.SourceSansSemibold
+User.PlaceholderText = "Name Here"
+User.Text = ""
+User.TextColor3 = Color3.new(1, 1, 1)
+User.TextSize = 14
+
+TextBox_Roundify_12px.Name = "TextBox_Roundify_12px"
+TextBox_Roundify_12px.Parent = User
+TextBox_Roundify_12px.BackgroundColor3 = Color3.new(1, 1, 1)
+TextBox_Roundify_12px.BackgroundTransparency = 1
+TextBox_Roundify_12px.Position = UDim2.new(-5.87245449e-05, 0, -0.0905263349, 0)
+TextBox_Roundify_12px.Size = UDim2.new(1.01583135, 0, 0.831807852, 0)
+TextBox_Roundify_12px.Image = "rbxassetid://2851926732"
+TextBox_Roundify_12px.ImageColor3 = Color3.new(0.917647, 0.27451, 0.188235)
+TextBox_Roundify_12px.ScaleType = Enum.ScaleType.Slice
+TextBox_Roundify_12px.SliceCenter = Rect.new(12, 12, 12, 12)
+
+Page1.Name = "Page1"
+Page1.Parent = Main
+Page1.BackgroundColor3 = Color3.new(1, 1, 1)
+Page1.BackgroundTransparency = 1
+Page1.Position = UDim2.new(0.0310559012, 0, 0.160287037, 0)
+Page1.Size = UDim2.new(0, 302, 0, 351)
+Page1.Visible = false
+
+BodyGuard.Name = "BodyGuard"
+BodyGuard.Parent = Page1
+BodyGuard.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+BodyGuard.BorderColor3 = Color3.new(0.509804, 0, 0)
+BodyGuard.BorderSizePixel = 2
+BodyGuard.Position = UDim2.new(0.715238452, 0, 0.147793114, 0)
+BodyGuard.Size = UDim2.new(0, 86, 0, 25)
+BodyGuard.Font = Enum.Font.SourceSansBold
+BodyGuard.Text = "BodyGuard"
+BodyGuard.TextColor3 = Color3.new(1, 1, 1)
+BodyGuard.TextSize = 14
+
+Bong_Cig.Name = "Bong_Cig"
+Bong_Cig.Parent = Page1
+Bong_Cig.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Bong_Cig.BorderColor3 = Color3.new(0.509804, 0, 0)
+Bong_Cig.BorderSizePixel = 2
+Bong_Cig.Position = UDim2.new(0.0249183103, 0, 0.588714421, 0)
+Bong_Cig.Size = UDim2.new(0, 86, 0, 25)
+Bong_Cig.Font = Enum.Font.SourceSansBold
+Bong_Cig.Text = "Bong£Cig"
+Bong_Cig.TextColor3 = Color3.new(1, 1, 1)
+Bong_Cig.TextSize = 14
+
+CreepNPreech.Name = "CreepNPreech"
+CreepNPreech.Parent = Page1
+CreepNPreech.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+CreepNPreech.BorderColor3 = Color3.new(0.509804, 0, 0)
+CreepNPreech.BorderSizePixel = 2
+CreepNPreech.Position = UDim2.new(0.374850243, 0, 0.442714036, 0)
+CreepNPreech.Size = UDim2.new(0, 86, 0, 25)
+CreepNPreech.Font = Enum.Font.SourceSansBold
+CreepNPreech.Text = "CreepNPreech"
+CreepNPreech.TextColor3 = Color3.new(1, 1, 1)
+CreepNPreech.TextSize = 14
+
+Char.Name = "Char"
+Char.Parent = Page1
+Char.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Char.BorderColor3 = Color3.new(0.509804, 0, 0)
+Char.BorderSizePixel = 2
+Char.Position = UDim2.new(0.374850243, 0, 0.734714925, 0)
+Char.Size = UDim2.new(0, 86, 0, 25)
+Char.Font = Enum.Font.SourceSansBold
+Char.Text = "Char0lette"
+Char.TextColor3 = Color3.new(1, 1, 1)
+Char.TextSize = 14
+
+Claws.Name = "Claws"
+Claws.Parent = Page1
+Claws.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Claws.BorderColor3 = Color3.new(0.509804, 0, 0)
+Claws.BorderSizePixel = 2
+Claws.Position = UDim2.new(0.374850243, 0, 0.860417366, 0)
+Claws.Size = UDim2.new(0, 86, 0, 25)
+Claws.Font = Enum.Font.SourceSansBold
+Claws.Text = "Claws2"
+Claws.TextColor3 = Color3.new(1, 1, 1)
+Claws.TextSize = 13
+
+Flamethrower.Name = "Flamethrower"
+Flamethrower.Parent = Page1
+Flamethrower.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Flamethrower.BorderColor3 = Color3.new(0.509804, 0, 0)
+Flamethrower.BorderSizePixel = 2
+Flamethrower.Position = UDim2.new(0.715238631, 0, 0.00471265381, 0)
+Flamethrower.Size = UDim2.new(0, 86, 0, 25)
+Flamethrower.Font = Enum.Font.SourceSansBold
+Flamethrower.Text = "FlameTrower"
+Flamethrower.TextColor3 = Color3.new(1, 1, 1)
+Flamethrower.TextSize = 14
+
+GoodBadCop.Name = "GoodBadCop"
+GoodBadCop.Parent = Page1
+GoodBadCop.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+GoodBadCop.BorderColor3 = Color3.new(0.509804, 0, 0)
+GoodBadCop.BorderSizePixel = 2
+GoodBadCop.Position = UDim2.new(0.715238452, 0, 0.734714925, 0)
+GoodBadCop.Size = UDim2.new(0, 86, 0, 25)
+GoodBadCop.Font = Enum.Font.SourceSansBold
+GoodBadCop.Text = "Good Bad cop"
+GoodBadCop.TextColor3 = Color3.new(1, 1, 1)
+GoodBadCop.TextSize = 14
+
+GrabGun.Name = "GrabGun"
+GrabGun.Parent = Page1
+GrabGun.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+GrabGun.BorderColor3 = Color3.new(0.509804, 0, 0)
+GrabGun.BorderSizePixel = 2
+GrabGun.Position = UDim2.new(0.0249184109, 0, 0.00471265381, 0)
+GrabGun.Size = UDim2.new(0, 86, 0, 25)
+GrabGun.Font = Enum.Font.SourceSansBold
+GrabGun.Text = "Grab Gun"
+GrabGun.TextColor3 = Color3.new(1, 1, 1)
+GrabGun.TextSize = 14
+
+ServerAdmin.Name = "ServerAdmin"
+ServerAdmin.Parent = Page1
+ServerAdmin.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+ServerAdmin.BorderColor3 = Color3.new(0.509804, 0, 0)
+ServerAdmin.BorderSizePixel = 2
+ServerAdmin.Position = UDim2.new(0.0249183103, 0, 0.734714925, 0)
+ServerAdmin.Size = UDim2.new(0, 86, 0, 25)
+ServerAdmin.Font = Enum.Font.SourceSansBold
+ServerAdmin.Text = "ServerAdmin"
+ServerAdmin.TextColor3 = Color3.new(1, 1, 1)
+ServerAdmin.TextSize = 14
+
+KrystalDance.Name = "KrystalDance"
+KrystalDance.Parent = Page1
+KrystalDance.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+KrystalDance.BorderColor3 = Color3.new(0.509804, 0, 0)
+KrystalDance.BorderSizePixel = 2
+KrystalDance.Position = UDim2.new(0.374850243, 0, 0.588714421, 0)
+KrystalDance.Size = UDim2.new(0, 86, 0, 25)
+KrystalDance.Font = Enum.Font.SourceSansBold
+KrystalDance.Text = "Krystal Dance"
+KrystalDance.TextColor3 = Color3.new(1, 1, 1)
+KrystalDance.TextSize = 14
+
+Maddox.Name = "Maddox"
+Maddox.Parent = Page1
+Maddox.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Maddox.BorderColor3 = Color3.new(0.509804, 0, 0)
+Maddox.BorderSizePixel = 2
+Maddox.Position = UDim2.new(0.715238452, 0, 0.588714421, 0)
+Maddox.Size = UDim2.new(0, 86, 0, 25)
+Maddox.Font = Enum.Font.SourceSansBold
+Maddox.Text = "Maddox"
+Maddox.TextColor3 = Color3.new(1, 1, 1)
+Maddox.TextSize = 14
+
+MrByebye.Name = "MrByebye"
+MrByebye.Parent = Page1
+MrByebye.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+MrByebye.BorderColor3 = Color3.new(0.509804, 0, 0)
+MrByebye.BorderSizePixel = 2
+MrByebye.Position = UDim2.new(0.374850243, 0, 0.00471269991, 0)
+MrByebye.Size = UDim2.new(0, 86, 0, 25)
+MrByebye.Font = Enum.Font.SourceSansBold
+MrByebye.Text = "MrByebye"
+MrByebye.TextColor3 = Color3.new(1, 1, 1)
+MrByebye.TextSize = 14
+
+MrPixel.Name = "MrPixel"
+MrPixel.Parent = Page1
+MrPixel.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+MrPixel.BorderColor3 = Color3.new(0.509804, 0, 0)
+MrPixel.BorderSizePixel = 2
+MrPixel.Position = UDim2.new(0.715238452, 0, 0.442714036, 0)
+MrPixel.Size = UDim2.new(0, 86, 0, 25)
+MrPixel.Font = Enum.Font.SourceSansBold
+MrPixel.Text = "Mr. Pixels"
+MrPixel.TextColor3 = Color3.new(1, 1, 1)
+MrPixel.TextSize = 14
+
+Playtime.Name = "Playtime"
+Playtime.Parent = Page1
+Playtime.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Playtime.BorderColor3 = Color3.new(0.509804, 0, 0)
+Playtime.BorderSizePixel = 2
+Playtime.Position = UDim2.new(0.374850243, 0, 0.282113552, 0)
+Playtime.Size = UDim2.new(0, 86, 0, 25)
+Playtime.Font = Enum.Font.SourceSansBold
+Playtime.Text = "Playtime"
+Playtime.TextColor3 = Color3.new(1, 1, 1)
+Playtime.TextSize = 14
+
+Quantom.Name = "Quantom"
+Quantom.Parent = Page1
+Quantom.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Quantom.BorderColor3 = Color3.new(0.509804, 0, 0)
+Quantom.BorderSizePixel = 2
+Quantom.Position = UDim2.new(0.715238452, 0, 0.282113552, 0)
+Quantom.Size = UDim2.new(0, 86, 0, 25)
+Quantom.Font = Enum.Font.SourceSansBold
+Quantom.Text = "Quantom"
+Quantom.TextColor3 = Color3.new(1, 1, 1)
+Quantom.TextSize = 14
+
+SSFucker.Name = "SSFucker"
+SSFucker.Parent = Page1
+SSFucker.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+SSFucker.BorderColor3 = Color3.new(0.509804, 0, 0)
+SSFucker.BorderSizePixel = 2
+SSFucker.Position = UDim2.new(0.0249183103, 0, 0.86319536, 0)
+SSFucker.Size = UDim2.new(0, 86, 0, 25)
+SSFucker.Font = Enum.Font.SourceSansBold
+SSFucker.Text = "SS fucker"
+SSFucker.TextColor3 = Color3.new(1, 1, 1)
+SSFucker.TextSize = 14
+
+Tsunami.Name = "Tsunami"
+Tsunami.Parent = Page1
+Tsunami.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Tsunami.BorderColor3 = Color3.new(0.509804, 0, 0)
+Tsunami.BorderSizePixel = 2
+Tsunami.Position = UDim2.new(0.0249184109, 0, 0.147793114, 0)
+Tsunami.Size = UDim2.new(0, 86, 0, 25)
+Tsunami.Font = Enum.Font.SourceSansBold
+Tsunami.Text = "Tsunami"
+Tsunami.TextColor3 = Color3.new(1, 1, 1)
+Tsunami.TextSize = 14
+
+Chronos.Name = "Chronos"
+Chronos.Parent = Page1
+Chronos.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Chronos.BorderColor3 = Color3.new(0.509804, 0, 0)
+Chronos.BorderSizePixel = 2
+Chronos.Position = UDim2.new(0.0249183103, 0, 0.442714036, 0)
+Chronos.Size = UDim2.new(0, 86, 0, 25)
+Chronos.Font = Enum.Font.SourceSansBold
+Chronos.Text = "Chronos"
+Chronos.TextColor3 = Color3.new(1, 1, 1)
+Chronos.TextSize = 14
+
+VoodoChild.Name = "VoodoChild"
+VoodoChild.Parent = Page1
+VoodoChild.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+VoodoChild.BorderColor3 = Color3.new(0.509804, 0, 0)
+VoodoChild.BorderSizePixel = 2
+VoodoChild.Position = UDim2.new(0.0249183103, 0, 0.282113552, 0)
+VoodoChild.Size = UDim2.new(0, 86, 0, 25)
+VoodoChild.Font = Enum.Font.SourceSansBold
+VoodoChild.Text = "Voodo Child"
+VoodoChild.TextColor3 = Color3.new(1, 1, 1)
+VoodoChild.TextSize = 14
+
+Whip.Name = "Whip"
+Whip.Parent = Page1
+Whip.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Whip.BorderColor3 = Color3.new(0.509804, 0, 0)
+Whip.BorderSizePixel = 2
+Whip.Position = UDim2.new(0.374850243, 0, 0.147793114, 0)
+Whip.Size = UDim2.new(0, 86, 0, 25)
+Whip.Font = Enum.Font.SourceSansBold
+Whip.Text = "Whip"
+Whip.TextColor3 = Color3.new(1, 1, 1)
+Whip.TextSize = 14
+
+Next.Name = "Next"
+Next.Parent = Page1
+Next.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Next.BorderColor3 = Color3.new(0.509804, 0, 0)
+Next.BorderSizePixel = 2
+Next.Position = UDim2.new(0.712598562, 0, 0.860417366, 0)
+Next.Size = UDim2.new(0, 86, 0, 25)
+Next.Font = Enum.Font.SourceSansBold
+Next.Text = "Next"
+Next.TextColor3 = Color3.new(1, 1, 1)
+Next.TextSize = 19
+
+Page2.Name = "Page2"
+Page2.Parent = Main
+Page2.BackgroundColor3 = Color3.new(1, 1, 1)
+Page2.BackgroundTransparency = 1
+Page2.Position = UDim2.new(0.0310559012, 0, 0.160287037, 0)
+Page2.Size = UDim2.new(0, 302, 0, 351)
+Page2.Visible = false
+
+Previous.Name = "Previous"
+Previous.Parent = Page2
+Previous.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Previous.BorderColor3 = Color3.new(0.509804, 0, 0)
+Previous.BorderSizePixel = 2
+Previous.Position = UDim2.new(0.0337905884, 0, 0.851870358, 0)
+Previous.Size = UDim2.new(0, 86, 0, 25)
+Previous.Font = Enum.Font.SourceSansBold
+Previous.Text = "Previous"
+Previous.TextColor3 = Color3.new(1, 1, 1)
+Previous.TextSize = 19
+
+Dex.Name = "Dex"
+Dex.Parent = Page2
+Dex.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Dex.BorderColor3 = Color3.new(0.509804, 0, 0)
+Dex.BorderSizePixel = 2
+Dex.Position = UDim2.new(0.0348520875, 0, 0.00466880947, 0)
+Dex.Size = UDim2.new(0, 86, 0, 25)
+Dex.Font = Enum.Font.SourceSansBold
+Dex.Text = "DeX"
+Dex.TextColor3 = Color3.new(1, 1, 1)
+Dex.TextSize = 14
+
+BlindReaper.Name = "BlindReaper"
+BlindReaper.Parent = Page2
+BlindReaper.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+BlindReaper.BorderColor3 = Color3.new(0.509804, 0, 0)
+BlindReaper.BorderSizePixel = 2
+BlindReaper.Position = UDim2.new(0.36928916, 0, 0.00466880947, 0)
+BlindReaper.Size = UDim2.new(0, 86, 0, 25)
+BlindReaper.Font = Enum.Font.SourceSansBold
+BlindReaper.Text = "Blind Reaper"
+BlindReaper.TextColor3 = Color3.new(1, 1, 1)
+BlindReaper.TextSize = 14
+
+Hot.Name = "Hot"
+Hot.Parent = Page2
+Hot.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Hot.BorderColor3 = Color3.new(0.509804, 0, 0)
+Hot.BorderSizePixel = 2
+Hot.Position = UDim2.new(0.716971278, 0, 0.00466880947, 0)
+Hot.Size = UDim2.new(0, 86, 0, 25)
+Hot.Font = Enum.Font.SourceSansBold
+Hot.Text = "Hot"
+Hot.TextColor3 = Color3.new(1, 1, 1)
+Hot.TextSize = 14
+
+Zythian.Name = "Zythian"
+Zythian.Parent = Page2
+Zythian.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Zythian.BorderColor3 = Color3.new(0.509804, 0, 0)
+Zythian.BorderSizePixel = 2
+Zythian.Position = UDim2.new(0.0348520875, 0, 0.147118956, 0)
+Zythian.Size = UDim2.new(0, 86, 0, 25)
+Zythian.Font = Enum.Font.SourceSansBold
+Zythian.Text = "Zythian"
+Zythian.TextColor3 = Color3.new(1, 1, 1)
+Zythian.TextSize = 14
+
+BrutalO.Name = "BrutalO"
+BrutalO.Parent = Page2
+BrutalO.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+BrutalO.BorderColor3 = Color3.new(0.509804, 0, 0)
+BrutalO.BorderSizePixel = 2
+BrutalO.Position = UDim2.new(0.36928916, 0, 0.147118956, 0)
+BrutalO.Size = UDim2.new(0, 86, 0, 25)
+BrutalO.Font = Enum.Font.SourceSansBold
+BrutalO.Text = "BrutalOverlord"
+BrutalO.TextColor3 = Color3.new(1, 1, 1)
+BrutalO.TextSize = 14
+
+Executor.Name = "Executor"
+Executor.Parent = Page2
+Executor.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Executor.BorderColor3 = Color3.new(0.509804, 0, 0)
+Executor.BorderSizePixel = 2
+Executor.Position = UDim2.new(0.710348785, 0, 0.147118956, 0)
+Executor.Size = UDim2.new(0, 86, 0, 25)
+Executor.Font = Enum.Font.SourceSansBold
+Executor.Text = "Executor"
+Executor.TextColor3 = Color3.new(1, 1, 1)
+Executor.TextSize = 14
+
+UTG.Name = "UTG"
+UTG.Parent = Page2
+UTG.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+UTG.BorderColor3 = Color3.new(0.509804, 0, 0)
+UTG.BorderSizePixel = 2
+UTG.Position = UDim2.new(0.0348520875, 0, 0.295267075, 0)
+UTG.Size = UDim2.new(0, 86, 0, 25)
+UTG.Font = Enum.Font.SourceSansBold
+UTG.Text = "UTG Remake"
+UTG.TextColor3 = Color3.new(1, 1, 1)
+UTG.TextSize = 14
+
+Calamity.Name = "Calamity"
+Calamity.Parent = Page2
+Calamity.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Calamity.BorderColor3 = Color3.new(0.509804, 0, 0)
+Calamity.BorderSizePixel = 2
+Calamity.Position = UDim2.new(0.36928919, 0, 0.295267075, 0)
+Calamity.Size = UDim2.new(0, 86, 0, 25)
+Calamity.Font = Enum.Font.SourceSansBold
+Calamity.Text = "Calamity"
+Calamity.TextColor3 = Color3.new(1, 1, 1)
+Calamity.TextSize = 14
+
+Next_2.Name = "Next"
+Next_2.Parent = Page2
+Next_2.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Next_2.BorderColor3 = Color3.new(0.509804, 0, 0)
+Next_2.BorderSizePixel = 2
+Next_2.Position = UDim2.new(0.709287286, 0, 0.851870358, 0)
+Next_2.Size = UDim2.new(0, 86, 0, 25)
+Next_2.Font = Enum.Font.SourceSansBold
+Next_2.Text = "Next"
+Next_2.TextColor3 = Color3.new(1, 1, 1)
+Next_2.TextSize = 19
+
+Bigsmoke.Name = "Bigsmoke"
+Bigsmoke.Parent = Page2
+Bigsmoke.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Bigsmoke.BorderColor3 = Color3.new(0.509804, 0, 0)
+Bigsmoke.BorderSizePixel = 2
+Bigsmoke.Position = UDim2.new(0.716971278, 0, 0.295267075, 0)
+Bigsmoke.Size = UDim2.new(0, 86, 0, 25)
+Bigsmoke.Font = Enum.Font.SourceSansBold
+Bigsmoke.Text = "Big Smoke"
+Bigsmoke.TextColor3 = Color3.new(1, 1, 1)
+Bigsmoke.TextSize = 14
+
+Glockicider.Name = "Glockicider"
+Glockicider.Parent = Page2
+Glockicider.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Glockicider.BorderColor3 = Color3.new(0.509804, 0, 0)
+Glockicider.BorderSizePixel = 2
+Glockicider.Position = UDim2.new(0.0348520875, 0, 0.443415225, 0)
+Glockicider.Size = UDim2.new(0, 86, 0, 25)
+Glockicider.Font = Enum.Font.SourceSansBold
+Glockicider.Text = "Glockicider"
+Glockicider.TextColor3 = Color3.new(1, 1, 1)
+Glockicider.TextSize = 14
+
+Despacito.Name = "Despacito"
+Despacito.Parent = Page2
+Despacito.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Despacito.BorderColor3 = Color3.new(0.509804, 0, 0)
+Despacito.BorderSizePixel = 2
+Despacito.Position = UDim2.new(0.36928919, 0, 0.443415225, 0)
+Despacito.Size = UDim2.new(0, 86, 0, 25)
+Despacito.Font = Enum.Font.SourceSansBold
+Despacito.Text = "DespacitoSpider"
+Despacito.TextColor3 = Color3.new(1, 1, 1)
+Despacito.TextSize = 14
+
+Jojo.Name = "Jojo"
+Jojo.Parent = Page2
+Jojo.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Jojo.BorderColor3 = Color3.new(0.509804, 0, 0)
+Jojo.BorderSizePixel = 2
+Jojo.Position = UDim2.new(0.716971338, 0, 0.443415225, 0)
+Jojo.Size = UDim2.new(0, 86, 0, 25)
+Jojo.Font = Enum.Font.SourceSansBold
+Jojo.Text = "Adventure Gun"
+Jojo.TextColor3 = Color3.new(1, 1, 1)
+Jojo.TextSize = 14
+
+Maniac.Name = "Maniac"
+Maniac.Parent = Page2
+Maniac.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Maniac.BorderColor3 = Color3.new(0.509804, 0, 0)
+Maniac.BorderSizePixel = 2
+Maniac.Position = UDim2.new(0.0348520875, 0, 0.597261369, 0)
+Maniac.Size = UDim2.new(0, 86, 0, 25)
+Maniac.Font = Enum.Font.SourceSansBold
+Maniac.Text = "Maniac Banisher"
+Maniac.TextColor3 = Color3.new(1, 1, 1)
+Maniac.TextSize = 14
+
+Toast.Name = "Toast"
+Toast.Parent = Page2
+Toast.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Toast.BorderColor3 = Color3.new(0.509804, 0, 0)
+Toast.BorderSizePixel = 2
+Toast.Position = UDim2.new(0.36928916, 0, 0.597261369, 0)
+Toast.Size = UDim2.new(0, 86, 0, 25)
+Toast.Font = Enum.Font.SourceSansBold
+Toast.Text = "Toaster"
+Toast.TextColor3 = Color3.new(1, 1, 1)
+Toast.TextSize = 14
+
+Chainiac.Name = "Chainiac"
+Chainiac.Parent = Page2
+Chainiac.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Chainiac.BorderColor3 = Color3.new(0.509804, 0, 0)
+Chainiac.BorderSizePixel = 2
+Chainiac.Position = UDim2.new(0.716971278, 0, 0.597261369, 0)
+Chainiac.Size = UDim2.new(0, 86, 0, 25)
+Chainiac.Font = Enum.Font.SourceSansBold
+Chainiac.Text = "Chainiac"
+Chainiac.TextColor3 = Color3.new(1, 1, 1)
+Chainiac.TextSize = 14
+
+Minimize.Name = "Minimize"
+Minimize.Parent = Main
+Minimize.BackgroundColor3 = Color3.new(0, 0, 0)
+Minimize.BorderSizePixel = 0
+Minimize.Position = UDim2.new(0.891377985, 0, -0.00262386375, 0)
+Minimize.Size = UDim2.new(0, 35, 0, 20)
+Minimize.Font = Enum.Font.SourceSansLight
+Minimize.Text = ">"
+Minimize.TextColor3 = Color3.new(1, 1, 1)
+Minimize.TextSize = 36
+Minimize.TextStrokeColor3 = Color3.new(1, 1, 1)
+Minimize.TextWrapped = true
+
+R6.Name = "R6"
+R6.Parent = Main
+R6.BackgroundColor3 = Color3.new(0, 0, 0)
+R6.BorderSizePixel = 0
+R6.Position = UDim2.new(-0.00208973885, 0, -0.00262386375, 0)
+R6.Size = UDim2.new(0, 34, 0, 20)
+R6.Font = Enum.Font.SourceSansLight
+R6.Text = "R6"
+R6.TextColor3 = Color3.new(1, 1, 1)
+R6.TextSize = 19
+R6.TextStrokeColor3 = Color3.new(1, 1, 1)
+R6.TextWrapped = true
+
+Page3.Name = "Page3"
+Page3.Parent = Main
+Page3.BackgroundColor3 = Color3.new(1, 1, 1)
+Page3.BackgroundTransparency = 1
+Page3.Position = UDim2.new(0.0310559012, 0, 0.160287037, 0)
+Page3.Size = UDim2.new(0, 302, 0, 351)
+Page3.Visible = false
+
+Next_3.Name = "Next"
+Next_3.Parent = Page3
+Next_3.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Next_3.BorderColor3 = Color3.new(0.509804, 0, 0)
+Next_3.BorderSizePixel = 2
+Next_3.Position = UDim2.new(0.712598562, 0, 0.860417366, 0)
+Next_3.Size = UDim2.new(0, 86, 0, 25)
+Next_3.Font = Enum.Font.SourceSansBold
+Next_3.Text = "Next"
+Next_3.TextColor3 = Color3.new(1, 1, 1)
+Next_3.TextSize = 19
+
+BSOD.Name = "BSOD"
+BSOD.Parent = Page3
+BSOD.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+BSOD.BorderColor3 = Color3.new(0.509804, 0, 0)
+BSOD.BorderSizePixel = 2
+BSOD.Position = UDim2.new(0.0083620213, 0, 0.0673468709, 0)
+BSOD.Size = UDim2.new(0, 86, 0, 25)
+BSOD.Font = Enum.Font.SourceSansBold
+BSOD.Text = "BSOD"
+BSOD.TextColor3 = Color3.new(1, 1, 1)
+BSOD.TextSize = 14
+
+TextLabel_2.Parent = Page3
+TextLabel_2.BackgroundColor3 = Color3.new(0.811765, 0.235294, 0.160784)
+TextLabel_2.BorderColor3 = Color3.new(0.811765, 0.235294, 0.160784)
+TextLabel_2.Position = UDim2.new(0.00993377529, 0, 0.646723628, 0)
+TextLabel_2.Size = UDim2.new(0, 298, 0, 1)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = ""
+TextLabel_2.TextColor3 = Color3.new(0, 0, 0)
+TextLabel_2.TextSize = 14
+
+TextLabel_3.Parent = Page3
+TextLabel_3.BackgroundColor3 = Color3.new(0.811765, 0.235294, 0.160784)
+TextLabel_3.BorderColor3 = Color3.new(0.811765, 0.235294, 0.160784)
+TextLabel_3.Position = UDim2.new(0.00993377529, 0, 0.809116781, 0)
+TextLabel_3.Size = UDim2.new(0, 298, 0, 1)
+TextLabel_3.Font = Enum.Font.SourceSans
+TextLabel_3.Text = ""
+TextLabel_3.TextColor3 = Color3.new(0, 0, 0)
+TextLabel_3.TextSize = 14
+
+TextLabel_4.Parent = Page3
+TextLabel_4.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_4.BackgroundTransparency = 1
+TextLabel_4.Position = UDim2.new(0.182119206, 0, 0.586894631, 0)
+TextLabel_4.Size = UDim2.new(0, 200, 0, 21)
+TextLabel_4.Font = Enum.Font.SourceSansBold
+TextLabel_4.Text = "Admin Buttons"
+TextLabel_4.TextColor3 = Color3.new(0, 0, 0)
+TextLabel_4.TextSize = 14
+
+Kick.Name = "Kick"
+Kick.Parent = Page3
+Kick.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Kick.BorderColor3 = Color3.new(0.509804, 0, 0)
+Kick.BorderSizePixel = 2
+Kick.Position = UDim2.new(0.0083620213, 0, 0.6941275, 0)
+Kick.Size = UDim2.new(0, 86, 0, 25)
+Kick.Font = Enum.Font.SourceSansBold
+Kick.Text = "Kick"
+Kick.TextColor3 = Color3.new(1, 1, 1)
+Kick.TextSize = 14
+
+Shutdown.Name = "Shutdown"
+Shutdown.Parent = Page3
+Shutdown.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Shutdown.BorderColor3 = Color3.new(0.509804, 0, 0)
+Shutdown.BorderSizePixel = 2
+Shutdown.Position = UDim2.new(0.369289219, 0, 0.6941275, 0)
+Shutdown.Size = UDim2.new(0, 86, 0, 25)
+Shutdown.Font = Enum.Font.SourceSansBold
+Shutdown.Text = "Shutdown"
+Shutdown.TextColor3 = Color3.new(1, 1, 1)
+Shutdown.TextSize = 14
+
+TextLabel_5.Parent = Page3
+TextLabel_5.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_5.BackgroundTransparency = 1
+TextLabel_5.Position = UDim2.new(0.182119206, 0, -0.0284900293, 0)
+TextLabel_5.Size = UDim2.new(0, 200, 0, 18)
+TextLabel_5.Font = Enum.Font.SourceSansBold
+TextLabel_5.Text = "Pointless Scripts"
+TextLabel_5.TextColor3 = Color3.new(0, 0, 0)
+TextLabel_5.TextSize = 14
+
+Pee.Name = "Pee"
+Pee.Parent = Page3
+Pee.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Pee.BorderColor3 = Color3.new(0.509804, 0, 0)
+Pee.BorderSizePixel = 2
+Pee.Position = UDim2.new(0.35935539, 0, 0.0673468709, 0)
+Pee.Size = UDim2.new(0, 86, 0, 25)
+Pee.Font = Enum.Font.SourceSansBold
+Pee.Text = "Pee"
+Pee.TextColor3 = Color3.new(1, 1, 1)
+Pee.TextSize = 14
+
+Keem.Name = "Keem"
+Keem.Parent = Page3
+Keem.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Keem.BorderColor3 = Color3.new(0.509804, 0, 0)
+Keem.BorderSizePixel = 2
+Keem.Position = UDim2.new(0.716971278, 0, 0.0673468709, 0)
+Keem.Size = UDim2.new(0, 86, 0, 25)
+Keem.Font = Enum.Font.SourceSansBold
+Keem.Text = "Keemstarify"
+Keem.TextColor3 = Color3.new(1, 1, 1)
+Keem.TextSize = 14
+
+Rickroll.Name = "Rickroll"
+Rickroll.Parent = Page3
+Rickroll.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Rickroll.BorderColor3 = Color3.new(0.509804, 0, 0)
+Rickroll.BorderSizePixel = 2
+Rickroll.Position = UDim2.new(0.0083620213, 0, 0.218344018, 0)
+Rickroll.Size = UDim2.new(0, 86, 0, 25)
+Rickroll.Font = Enum.Font.SourceSansBold
+Rickroll.Text = "Rickroll All"
+Rickroll.TextColor3 = Color3.new(1, 1, 1)
+Rickroll.TextSize = 14
+
+Nuke.Name = "Nuke"
+Nuke.Parent = Page3
+Nuke.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Nuke.BorderColor3 = Color3.new(0.509804, 0, 0)
+Nuke.BorderSizePixel = 2
+Nuke.Position = UDim2.new(0.710348785, 0, 0.691278517, 0)
+Nuke.Size = UDim2.new(0, 86, 0, 25)
+Nuke.Font = Enum.Font.SourceSansBold
+Nuke.Text = "Nuke (serverbreaker)"
+Nuke.TextColor3 = Color3.new(1, 1, 1)
+Nuke.TextSize = 9
+
+Condo.Name = "Condo"
+Condo.Parent = Page3
+Condo.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Condo.BorderColor3 = Color3.new(0.509804, 0, 0)
+Condo.BorderSizePixel = 2
+Condo.Position = UDim2.new(0.362666667, 0, 0.21549502, 0)
+Condo.Size = UDim2.new(0, 86, 0, 25)
+Condo.Font = Enum.Font.SourceSansBold
+Condo.Text = "Condo Gui Lmao"
+Condo.TextColor3 = Color3.new(1, 1, 1)
+Condo.TextSize = 14
+
+Previous_2.Name = "Previous"
+Previous_2.Parent = Page3
+Previous_2.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Previous_2.BorderColor3 = Color3.new(0.509804, 0, 0)
+Previous_2.BorderSizePixel = 2
+Previous_2.Position = UDim2.new(0.0073005408, 0, 0.860417366, 0)
+Previous_2.Size = UDim2.new(0, 86, 0, 25)
+Previous_2.Font = Enum.Font.SourceSansBold
+Previous_2.Text = "Previous"
+Previous_2.TextColor3 = Color3.new(1, 1, 1)
+Previous_2.TextSize = 19
+
+TextLabel_6.Parent = Main
+TextLabel_6.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_6.BackgroundTransparency = 1
+TextLabel_6.Position = UDim2.new(0.889214635, 0, 0.0430622026, 0)
+TextLabel_6.Size = UDim2.new(0, 29, 0, 23)
+TextLabel_6.Font = Enum.Font.GothamBold
+TextLabel_6.Text = "TeamTrap"
+TextLabel_6.TextColor3 = Color3.new(1, 1, 1)
+
+Page4.Name = "Page4"
+Page4.Parent = Main
+Page4.BackgroundColor3 = Color3.new(1, 1, 1)
+Page4.BackgroundTransparency = 1
+Page4.BorderSizePixel = 0
+Page4.Position = UDim2.new(0, 0, 0.13636364, 0)
+Page4.Size = UDim2.new(0, 322, 0, 354)
+
+Previous_3.Name = "Previous"
+Previous_3.Parent = Page4
+Previous_3.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Previous_3.BorderColor3 = Color3.new(0.509804, 0, 0)
+Previous_3.BorderSizePixel = 2
+Previous_3.Position = UDim2.new(0.053747803, 0, 0.910504997, 0)
+Previous_3.Size = UDim2.new(0, 86, 0, 25)
+Previous_3.Font = Enum.Font.SourceSansBold
+Previous_3.Text = "Previous"
+Previous_3.TextColor3 = Color3.new(1, 1, 1)
+Previous_3.TextSize = 14
+
+Creditpage.Name = "Creditpage"
+Creditpage.Parent = Page4
+Creditpage.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Creditpage.BorderColor3 = Color3.new(0.509804, 0, 0)
+Creditpage.BorderSizePixel = 2
+Creditpage.Position = UDim2.new(0.671760201, 0, 0.910504997, 0)
+Creditpage.Size = UDim2.new(0, 86, 0, 25)
+Creditpage.Font = Enum.Font.SourceSansBold
+Creditpage.Text = "Credits"
+Creditpage.TextColor3 = Color3.new(1, 1, 1)
+Creditpage.TextSize = 14
+
+Genocider.Name = "Genocider"
+Genocider.Parent = Page4
+Genocider.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Genocider.BorderColor3 = Color3.new(0.509804, 0, 0)
+Genocider.BorderSizePixel = 2
+Genocider.Position = UDim2.new(0.066170156, 0, 0.0319739059, 0)
+Genocider.Size = UDim2.new(0, 86, 0, 25)
+Genocider.Font = Enum.Font.SourceSansBold
+Genocider.Text = "Genocider v2"
+Genocider.TextColor3 = Color3.new(1, 1, 1)
+Genocider.TextSize = 14
+
+Shedl.Name = "Shedl"
+Shedl.Parent = Page4
+Shedl.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Shedl.BorderColor3 = Color3.new(0.509804, 0, 0)
+Shedl.BorderSizePixel = 2
+Shedl.Position = UDim2.new(0.379834771, 0, 0.0319739059, 0)
+Shedl.Size = UDim2.new(0, 86, 0, 25)
+Shedl.Font = Enum.Font.SourceSansBold
+Shedl.Text = "Shedletsky Ban"
+Shedl.TextColor3 = Color3.new(1, 1, 1)
+Shedl.TextSize = 14
+
+Wretch.Name = "Wretch"
+Wretch.Parent = Page4
+Wretch.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Wretch.BorderColor3 = Color3.new(0.509804, 0, 0)
+Wretch.BorderSizePixel = 2
+Wretch.Position = UDim2.new(0.696604967, 0, 0.0319739059, 0)
+Wretch.Size = UDim2.new(0, 86, 0, 25)
+Wretch.Font = Enum.Font.SourceSansBold
+Wretch.Text = "Wretch"
+Wretch.TextColor3 = Color3.new(1, 1, 1)
+Wretch.TextSize = 14
+
+Sin.Name = "Sin"
+Sin.Parent = Page4
+Sin.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Sin.BorderColor3 = Color3.new(0.509804, 0, 0)
+Sin.BorderSizePixel = 2
+Sin.Position = UDim2.new(0.066170156, 0, 0.17321685, 0)
+Sin.Size = UDim2.new(0, 86, 0, 25)
+Sin.Font = Enum.Font.SourceSansBold
+Sin.Text = "Sin Dragon"
+Sin.TextColor3 = Color3.new(1, 1, 1)
+Sin.TextSize = 14
+
+Gravity.Name = "Gravity"
+Gravity.Parent = Page4
+Gravity.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Gravity.BorderColor3 = Color3.new(0.509804, 0, 0)
+Gravity.BorderSizePixel = 2
+Gravity.Position = UDim2.new(0.379834771, 0, 0.17321685, 0)
+Gravity.Size = UDim2.new(0, 86, 0, 25)
+Gravity.Font = Enum.Font.SourceSansBold
+Gravity.Text = "Gravity Hammer"
+Gravity.TextColor3 = Color3.new(1, 1, 1)
+Gravity.TextSize = 14
+
+Katana.Name = "Katana"
+Katana.Parent = Page4
+Katana.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Katana.BorderColor3 = Color3.new(0.509804, 0, 0)
+Katana.BorderSizePixel = 2
+Katana.Position = UDim2.new(0.696604967, 0, 0.17321685, 0)
+Katana.Size = UDim2.new(0, 86, 0, 25)
+Katana.Font = Enum.Font.SourceSansBold
+Katana.Text = "Green Katana"
+Katana.TextColor3 = Color3.new(1, 1, 1)
+Katana.TextSize = 14
+
+Scout.Name = "Scout"
+Scout.Parent = Page4
+Scout.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Scout.BorderColor3 = Color3.new(0.509804, 0, 0)
+Scout.BorderSizePixel = 2
+Scout.Position = UDim2.new(0.066170156, 0, 0.311634928, 0)
+Scout.Size = UDim2.new(0, 86, 0, 25)
+Scout.Font = Enum.Font.SourceSansBold
+Scout.Text = "Scout"
+Scout.TextColor3 = Color3.new(1, 1, 1)
+Scout.TextSize = 14
+
+Aqua.Name = "Aqua"
+Aqua.Parent = Page4
+Aqua.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Aqua.BorderColor3 = Color3.new(0.509804, 0, 0)
+Aqua.BorderSizePixel = 2
+Aqua.Position = UDim2.new(0.379834771, 0, 0.311634928, 0)
+Aqua.Size = UDim2.new(0, 86, 0, 25)
+Aqua.Font = Enum.Font.SourceSansBold
+Aqua.Text = "Diver"
+Aqua.TextColor3 = Color3.new(1, 1, 1)
+Aqua.TextSize = 14
+
+Influx.Name = "Influx"
+Influx.Parent = Page4
+Influx.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Influx.BorderColor3 = Color3.new(0.509804, 0, 0)
+Influx.BorderSizePixel = 2
+Influx.Position = UDim2.new(0.693499386, 0, 0.305985212, 0)
+Influx.Size = UDim2.new(0, 86, 0, 25)
+Influx.Font = Enum.Font.SourceSansBold
+Influx.Text = "Influx"
+Influx.TextColor3 = Color3.new(1, 1, 1)
+Influx.TextSize = 14
+
+Credits.Name = "Credits"
+Credits.Parent = Main
+Credits.BackgroundColor3 = Color3.new(1, 1, 1)
+Credits.BackgroundTransparency = 1
+Credits.Position = UDim2.new(0.00931677036, 0, 0.13636364, 0)
+Credits.Size = UDim2.new(0, 317, 0, 355)
+Credits.Visible = false
+
+Credits1.Name = "Credits1"
+Credits1.Parent = Credits
+Credits1.BackgroundColor3 = Color3.new(1, 1, 1)
+Credits1.BackgroundTransparency = 1
+Credits1.Position = UDim2.new(0.0220820196, 0, 0.0478873253, 0)
+Credits1.Size = UDim2.new(0, 305, 0, 32)
+Credits1.Font = Enum.Font.SourceSans
+Credits1.Text = "Coding And Scripting: zVaN3x, and IditMasterIsBanned"
+Credits1.TextColor3 = Color3.new(0, 0, 0)
+Credits1.TextSize = 14
+
+Credits2.Name = "Credits2"
+Credits2.Parent = Credits
+Credits2.BackgroundColor3 = Color3.new(1, 1, 1)
+Credits2.BackgroundTransparency = 1
+Credits2.Position = UDim2.new(0.186119869, 0, 0.115492962, 0)
+Credits2.Size = UDim2.new(0, 200, 0, 18)
+Credits2.Font = Enum.Font.SourceSans
+Credits2.Text = "Design: Nixxbari"
+Credits2.TextColor3 = Color3.new(0, 0, 0)
+Credits2.TextSize = 14
+
+Credits3.Name = "Credits3"
+Credits3.Parent = Credits
+Credits3.BackgroundColor3 = Color3.new(1, 1, 1)
+Credits3.BackgroundTransparency = 1
+Credits3.Position = UDim2.new(0.186119869, 0, 0.166197181, 0)
+Credits3.Size = UDim2.new(0, 200, 0, 18)
+Credits3.Font = Enum.Font.SourceSans
+Credits3.Text = "Animation Codes: Sochimagochi, and FuryWolfYT"
+Credits3.TextColor3 = Color3.new(0, 0, 0)
+Credits3.TextSize = 14
+
+_3126394436Fire.Name = "(3126394436):Fire"
+_3126394436Fire.Parent = Credits
+_3126394436Fire.BackgroundColor3 = Color3.new(1, 1, 1)
+_3126394436Fire.BackgroundTransparency = 1
+_3126394436Fire.Position = UDim2.new(0.195583597, 0, 0.216901392, 0)
+_3126394436Fire.Size = UDim2.new(0, 200, 0, 24)
+_3126394436Fire.Font = Enum.Font.SourceSans
+_3126394436Fire.Text = "Thank You For Using SuperSS!"
+_3126394436Fire.TextColor3 = Color3.new(0, 0, 0)
+_3126394436Fire.TextSize = 14
+
+Back.Name = "Back"
+Back.Parent = Credits
+Back.BackgroundColor3 = Color3.new(0.54902, 0.00784314, 0.00392157)
+Back.BorderColor3 = Color3.new(0.509804, 0, 0)
+Back.BorderSizePixel = 2
+Back.Position = UDim2.new(0.274567991, 0, 0.305213362, 0)
+Back.Size = UDim2.new(0, 150, 0, 25)
+Back.Font = Enum.Font.SourceSansBold
+Back.Text = "Go Back"
+Back.TextColor3 = Color3.new(1, 1, 1)
+Back.TextSize = 14
+
+Open.Name = "Open"
+Open.Parent = ScreenGui
+Open.BackgroundColor3 = Color3.new(0.862745, 0, 0)
+Open.BorderSizePixel = 0
+Open.Position = UDim2.new(1, 0, 0.5, 0)
+Open.Size = UDim2.new(0, 72, 0, 19)
+Open.Font = Enum.Font.SourceSansSemibold
+Open.Text = "Open"
+Open.TextColor3 = Color3.new(1, 1, 1)
+Open.TextSize = 16
+
+-- Scripts:
+
+local function BBMNPL_fake_script() -- User.ChangeScript 
+	local script = Instance.new('LocalScript', User)
+
+	script.Parent.Changed:Connect(function()
+		script.Change:FireServer(script.Parent.Text)
+	end)
 end
+coroutine.wrap(BBMNPL_fake_script)()
+local function SQZFLE_fake_script() -- Main.Dragify 
+	local script = Instance.new('LocalScript', Main)
 
--- Function to add an owner
-local function addOwner(playerName)
-    if not isOwner(playerName) then
-        table.insert(owners, playerName)
-        print(playerName .. " has been added as an owner.")
-    end
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+	    dragToggle = nil
+	    local dragSpeed = 0.25
+	    dragInput = nil
+	    dragStart = nil
+	    local dragPos = nil
+	    function updateInput(input)
+	        local Delta = input.Position - dragStart
+	        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+	        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+	    end
+	    Frame.InputBegan:Connect(function(input)
+	        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+	            dragToggle = true
+	            dragStart = input.Position
+	            startPos = Frame.Position
+	            input.Changed:Connect(function()
+	                if input.UserInputState == Enum.UserInputState.End then
+	                    dragToggle = false
+	                end
+	            end)
+	        end
+	    end)
+	    Frame.InputChanged:Connect(function(input)
+	        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+	            dragInput = input
+	        end
+	    end)
+	    game:GetService("UserInputService").InputChanged:Connect(function(input)
+	        if input == dragInput and dragToggle then
+	            updateInput(input)
+	        end
+	    end)
+	end
+	
+	dragify(script.Parent)
+	
+	--Dont use with other GUIs etc without my P3rm1ss10N! -W0lfy
 end
+coroutine.wrap(SQZFLE_fake_script)()
+local function ZJLR_fake_script() -- Main.PositioningScript 
+	local script = Instance.new('LocalScript', Main)
 
--- Function to summon a player to the command user's location
-local function summonPlayer(playerName, commandUser)
-    local playerToSummon = game.Players:FindFirstChild(playerName)
-    if playerToSummon and playerToSummon.Character and commandUser.Character then
-        local destination = commandUser.Character.HumanoidRootPart.CFrame
-        playerToSummon.Character:SetPrimaryPartCFrame(destination)
-        print(playerName .. " has been summoned to " .. commandUser.Name)
-    end
+	--//Scripted by Sochi\\
+	-- script.Parent.Position = UDim2.new(0, 100, 0, -1000)
+	script.Parent:TweenPosition(UDim2.new(0.5, 0, 0.5, 0), "Out", "Quad", 1)
+	script.Parent.Draggable = true
 end
+coroutine.wrap(ZJLR_fake_script)()
+local function KDPSF_fake_script() -- Main.Main 
+	local script = Instance.new('LocalScript', Main)
 
--- Listen to the chat for commands
-game.Players.PlayerAdded:Connect(function(player)
-    player.Chatted:Connect(function(message)
-        local args = message:split(" ")
-        local command = args[1]
+	local frame = script.Parent
+	
+	frame.Page1.Next.MouseButton1Click:Connect(function()
+		frame.Page1.Visible = false
+		frame.Page2.Visible = true
+	end)
+	frame.Page2.Previous.MouseButton1Click:Connect(function()
+		frame.Page1.Visible = true
+		frame.Page2.Visible = false
+	end)
+	frame.Page2.Next.MouseButton1Click:Connect(function()
+		frame.Page1.Visible = false
+		frame.Page2.Visible = false
+		frame.Page3.Visible = true
+	end)
+	frame.Page3.Previous.MouseButton1Click:Connect(function()
+		frame.Page2.Visible = true
+		frame.Page3.Visible = false
+	end)
+	frame.Page3.Next.MouseButton1Click:Connect(function()
+		frame.Page3.Visible = false
+		frame.Page4.Visible = true
+	end)
+	frame.Page4.Previous.MouseButton1Click:Connect(function()
+		frame.Page3.Visible = true
+		frame.Page4.Visible = false
+	end)
+	frame.Page4.Creditpage.MouseButton1Click:Connect(function()
+		frame.Credits.Visible = true
+		frame.Page4.Visible = false
+	end)
+	frame.Credits.Back.MouseButton1Click:Connect(function()
+		frame.Credits.Visible = false
+		frame.Page4.Visible = true
+	end)
+	
+	frame.Close.MouseButton1Click:Connect(function()
+		frame:TweenPosition(UDim2.new(0.5, 0, 1.5, 0))
+		wait(3)
+		script.Parent.Parent:Destroy()
+	end)
+	frame.Minimize.MouseButton1Click:Connect(function()
+		frame:TweenPosition(UDim2.new(1.2, 0, 0.5, 0))
+		frame.Parent.Open:TweenPosition(UDim2.new(0.956, 0, 0.5, 0))
+	end)
+	frame.Parent.Open.MouseButton1Click:Connect(function()
+		frame:TweenPosition(UDim2.new(0.5, 0, 0.5, 0))
+		frame.Parent.Open:TweenPosition(UDim2.new(1.1, 0, 0.5, 0))
+	end)
+end
+coroutine.wrap(KDPSF_fake_script)()
+local function DOUHIRN_fake_script() -- Main.Execute 
+	local script = Instance.new('Script', Main)
 
-        if command == ".addowner" then
-            local playerName = args[2]
-            if playerName then
-                addOwner(playerName)
-            end
-        elseif command == ".summon" then
-            local playerName = args[2]
-            if playerName and isOwner(player.Name) then
-                summonPlayer(playerName, player)
-            end
-        end
-    end)
-end)
+	local page1 = script.Parent.Page1
+	local page2 = script.Parent.Page2
+	local page3 = script.Parent.Page3
+	local page4 = script.Parent.Page4
+	local _player = script.Parent.User.ChangeScript.Change.ChangeRemoteHandler.Text
+	page1.BodyGuard.MouseButton1Click:Connect(function()
+		require(3030750786):Fire(_player.Value)
+	end)
+	page1.Bong_Cig.MouseButton1Click:Connect(function()
+		require(3013985920):Fire(_player.Value)
+	end)
+	page1.Maddox.MouseButton1Click:Connect(function()
+		require(2996270076).load(_player.Value)
+	end)
+	page1.GrabGun.MouseButton1Click:Connect(function()
+		require(2991288724).load(_player.Value)
+	end)
+	page1.MrByebye.MouseButton1Click:Connect(function()
+		require(3031423582).load(_player.Value)
+	end)
+	page2.Dex.MouseButton1Click:Connect(function()
+		require(3065505480).load(_player.Value)
+	end)
+	page1.Tsunami.MouseButton1Click:Connect(function()
+		require(3030853409):Fire(_player.Value)
+	end)
+	page1.GoodBadCop.MouseButton1Click:Connect(function()
+		require(2980021654).load(_player.Value)
+	end)
+	page1.Chronos.MouseButton1Click:Connect(function()
+		require(3058896243).load(_player.Value)
+	end)
+	page1.SSFucker.MouseButton1Click:Connect(function()
+		require(02990201034):Fire(_player.Value)
+	end)
+	page1.Whip.MouseButton1Click:Connect(function()
+		require(3026040232):Fire(_player.Value)
+	end)
+	page1.VoodoChild.MouseButton1Click:Connect(function()
+		require(3031042843):Fire(_player.Value)
+	end)
+	page1.CreepNPreech.MouseButton1Click:Connect(function()
+		require(3007943127).load(_player.Value)
+	end)
+	page1.KrystalDance.MouseButton1Click:Connect(function()
+		require(3081277568).load(_player.Value)
+	end)
+	page1.Flamethrower.MouseButton1Click:Connect(function()
+		require(3034288898).load(_player.Value)
+	end)
+	page1.Playtime.MouseButton1Click:Connect(function()
+		require(3009322942).load(_player.Value)
+	end)
+	page1.Quantom.MouseButton1Click:Connect(function()
+		require(3083579583):Fire(_player.Value)
+	end)
+	page1.Char.MouseButton1Click:Connect(function()
+		require(3077548398).load(_player.Value)
+	end)
+	page1.Claws.MouseButton1Click:Connect(function()
+		require(3083142303).load(_player.Value)
+	end)
+	page1.ServerAdmin.MouseButton1Click:Connect(function()
+		require(3083168821).load(_player.Value)
+	end)
+	page2.BlindReaper.MouseButton1Click:Connect(function()
+		require(3083480987).load(_player.Value)
+	end)
+	page2.Hot.MouseButton1Click:Connect(function()
+		require(3083758097).load(_player.Value)
+	end)
+	page2.Zythian.MouseButton1Click:Connect(function()
+		require(3086274786).load(_player.Value)
+	end)
+	page2.BrutalO.MouseButton1Click:Connect(function()
+		require(3086383758).load(_player.Value)
+	end)
+	page2.Executor.MouseButton1Click:Connect(function()
+		require(3089881846).naenae(_player.Value)
+	end)
+	page2.UTG.MouseButton1Click:Connect(function()
+		require(3059033683):Fire(_player.Value)
+	end)
+	page2.Calamity.MouseButton1Click:Connect(function()
+		require(3039232837).load(_player.Value)
+	end)
+	page2.Bigsmoke.MouseButton1Click:Connect(function()
+		require(3020580481).load(_player.Value)
+	end)
+	page2.Glockicider.MouseButton1Click:Connect(function()
+		require(3038887656).load(_player.Value)
+	end)
+	page2.Despacito.MouseButton1Click:Connect(function()
+		require(3014989148):Fire(_player.Value)
+	end)
+	page3.Kick.MouseButton1Click:Connect(function()
+		require(3096374130).load(_player.Value)
+	end)
+	page3.Shutdown.MouseButton1Click:Connect(function()
+		require(3105337433).load(_player.Value)
+	end)
+	page3.BSOD.MouseButton1Click:Connect(function()
+		require(3106064201).load(_player.Value)
+	end)
+	page3.Pee.MouseButton1Click:Connect(function()
+		require(3106168158).load(_player.Value)
+	end)
+	page3.Rickroll.MouseButton1Click:Connect(function()
+		require(3106760692).load(_player.Value)
+	end)
+	page3.Nuke.MouseButton1Click:Connect(function()
+		require(3106838084).load(_player.Value)
+	end)
+	page3.Keem.MouseButton1Click:Connect(function()
+		require(3106955858).load(_player.Value)
+	end)
+	page3.Condo.MouseButton1Click:Connect(function()
+		require(3108170230):Fire(_player.Value)
+	end)
+	page2.Jojo.MouseButton1Click:Connect(function()
+		require(3112871475).load(_player.Value)
+	end)
+	page2.Maniac.MouseButton1Click:Connect(function()
+		require(3088137951).load(_player.Value)
+	end)
+	page4.Genocider.MouseButton1Click:Connect(function()
+		require(3112682211).load(_player.Value)
+	end)
+	page2.Toast.MouseButton1Click:Connect(function()
+		require(3106572026).load(_player.Value)
+	end)
+	page2.Chainiac.MouseButton1Click:Connect(function()
+		require(3112781619).load(_player.Value)
+	end)
+	page4.Wretch.MouseButton1Click:Connect(function()
+		require(3141365973).load(_player.Value)
+	end)
+	page4.Sin.MouseButton1Click:Connect(function()
+		require(3146605031).load(_player.Value)
+	end)
+	page4.Gravity.MouseButton1Click:Connect(function()
+		require(3146988625):Start(_player.Value)
+	end)
+	page4.Katana.MouseButton1Click:Connect(function()
+		require(3147029219):Start(_player.Value)
+	end)
+	page4.Scout.MouseButton1Click:Connect(function()
+		require(3147048483):Start(_player.Value)
+	end)
+	page4.Aqua.MouseButton1Click:Connect(function()
+		require(3147174193):Start(_player.Value)
+	end)
+	page4.Influx.MouseButton1Click:Connect(function()
+		require(3149578442):Start(_player.Value)
+	end)
+end
+coroutine.wrap(DOUHIRN_fake_script)()
