@@ -1,27 +1,50 @@
--- Tool'u oluşturma ve oyuncunun envanterine ekleme
-local Tool = Instance.new("Tool")
-Tool.Name = "Jumpscare Atma Esyasi"
-Tool.RequiresHandle = false
-Tool.Parent = game.Players.LocalPlayer.Backpack
+-- List of owners
+local owners = {}
 
--- Tool'a tıklandığında çalışacak kod
-Tool.Activated:Connect(function()
-    local player = game.Players.LocalPlayer
-    local character = player.Character
-    if not character then return end
+-- Function to check if a player is an owner
+local function isOwner(playerName)
+    for _, owner in ipairs(owners) do
+        if owner == playerName then
+            return true
+        end
+    end
+    return false
+end
 
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+-- Function to add an owner
+local function addOwner(playerName)
+    if not isOwner(playerName) then
+        table.insert(owners, playerName)
+        print(playerName .. " has been added as an owner.")
+    end
+end
 
-    -- Mevcut konumu kaydet
-    local originalPosition = humanoidRootPart.Position
-    local originalCFrame = humanoidRootPart.CFrame
+-- Function to summon a player to the command user's location
+local function summonPlayer(playerName, commandUser)
+    local playerToSummon = game.Players:FindFirstChild(playerName)
+    if playerToSummon and playerToSummon.Character and commandUser.Character then
+        local destination = commandUser.Character.HumanoidRootPart.CFrame
+        playerToSummon.Character:SetPrimaryPartCFrame(destination)
+        print(playerName .. " has been summoned to " .. commandUser.Name)
+    end
+end
 
-    -- Mouse'un tıkladığı yere teleport etme
-    local mouse = player:GetMouse()
-    local targetPosition = mouse.Hit.p
-    humanoidRootPart.CFrame = CFrame.new(targetPosition)
+-- Listen to the chat for commands
+game.Players.PlayerAdded:Connect(function(player)
+    player.Chatted:Connect(function(message)
+        local args = message:split(" ")
+        local command = args[1]
 
-    -- 1 saniye sonra karakteri eski konumuna geri getirme
-    wait(0.3)
-    humanoidRootPart.CFrame = originalCFrame
+        if command == ".addowner" then
+            local playerName = args[2]
+            if playerName then
+                addOwner(playerName)
+            end
+        elseif command == ".summon" then
+            local playerName = args[2]
+            if playerName and isOwner(player.Name) then
+                summonPlayer(playerName, player)
+            end
+        end
+    end)
 end)
