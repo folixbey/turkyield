@@ -30,7 +30,7 @@ Button.Parent = ScreenGui
 
 local function checkWhitelist()
     local success, response = pcall(function()
-        return HttpService:GetAsync("https://raw.githubusercontent.com/Turk-Yield/turkgui/main/whitelist.lua")
+        return HttpService:GetAsync("https://raw.githubusercontent.com/folixbey/turkyield/main/whitelist")
     end)
 
     if success then
