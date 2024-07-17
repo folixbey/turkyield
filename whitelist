@@ -1,0 +1,5 @@
+-- whitelist.lua
+
+return {
+    {username = "folixbey", userId = 6135508428},
+}
