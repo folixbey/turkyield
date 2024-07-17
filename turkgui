@@ -1,0 +1,64 @@
+-- Roblox Script
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local Button = Instance.new("TextButton")
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.Enabled = false
+
+Frame.Size = UDim2.new(1, 0, 1, 0)
+Frame.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame.Parent = ScreenGui
+
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Text = "SIZ WHITELIST DEGILSINIZ"
+TextLabel.TextColor3 = Color3.new(1, 1, 1)
+TextLabel.TextScaled = true
+TextLabel.Parent = Frame
+
+Button.Size = UDim2.new(0, 200, 0, 50)
+Button.Position = UDim2.new(0.5, -100, 0.5, -25)
+Button.Text = "Test"
+Button.TextScaled = true
+Button.Visible = false
+Button.Parent = ScreenGui
+
+local function checkWhitelist()
+    local success, response = pcall(function()
+        return HttpService:GetAsync("https://raw.githubusercontent.com/Turk-Yield/turkgui/main/whitelist.lua")
+    end)
+
+    if success then
+        local whitelist = loadstring(response)()
+        for _, user in ipairs(whitelist) do
+            if user.username == LocalPlayer.Name and user.userId == LocalPlayer.UserId then
+                Button.Visible = true
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
+local function showBlacklistMessage()
+    ScreenGui.Enabled = true
+    wait(10)
+    ScreenGui.Enabled = false
+    script:Destroy()
+end
+
+local isWhitelisted = checkWhitelist()
+
+if not isWhitelisted then
+    showBlacklistMessage()
+else
+    Button.MouseButton1Click:Connect(function()
+        print("Button clicked")
+    end)
+end
