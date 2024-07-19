@@ -30,10 +30,9 @@ grm.__namecall = newcclosure(function(self, ...)
     return old(self, ...)
 end)
 
---// main functions
+-- // main functions
 local OriginalKeyUpValue = 0
 local LocalPlayer = game:GetService("Players").LocalPlayer
-
 local OldChar = LocalPlayer.Character
 
 function StopAudio()
@@ -85,66 +84,20 @@ function play(ID, STOP, LMAO)
 end
 
 -- // main tools create
-local Batarang = Instance.new('Tool')
-Batarang.Parent = game.Players.LocalPlayer.Backpack
-Batarang.Name = "Batarang"
-Batarang.RequiresHandle = false
-
---// Batman Outfit We use a model due to the part and stuff
-local MaskOn = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
-MaskOn.AnimationId = "rbxassetid://3380627692"
-local MaskOff = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
-MaskOff.AnimationId = "rbxassetid://3380629232"
-local old2 = game.Players.LocalPlayer.Character:FindFirstChildOfClass('Shirt').ShirtTemplate
-local old3 = game.Players.LocalPlayer.Character:FindFirstChildOfClass('Pants').PantsTemplate  
-game:GetObjects("rbxassetid://8083348193")[1].Parent = game.Players.LocalPlayer.Backpack 
-local BatManOutFitTool = game.Players.LocalPlayer.Backpack.BatmanOutfit
-local OutFitOn = false
-BatManOutFitTool.Activated:Connect(function()
-    if OutFitOn == false then
-        OutFitOn = true
-        local lp = game:GetService("Players").LocalPlayer
-        game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(MaskOn):Play()
-        game.Players.LocalPlayer.Character.BatmanOutfit.Handle.Transparency = 1
-        game.Players.LocalPlayer.Character.BatmanOutfit.Handle.Decal.Transparency = 1
-        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('ShirtGraphic') then
-            game.Players.LocalPlayer.Character:FindFirstChildOfClass('ShirtGraphic'):Destroy()
-        end
-        if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Shirt') then
-            game.Players.LocalPlayer.Character:FindFirstChildOfClass('Shirt').ShirtTemplate = 'rbxassetid://164114181';
-        else
-            local Shirt = Instance.new('Shirt');
-            Shirt.Parent = game.Players.LocalPlayer.Character;
-            Shirt.ShirtTemplate = 'rbxassetid://164114181';
-        end
-        if game.Players.LocalPlayer.Character:FindFirstChild('Pants') then
-            game.Players.LocalPlayer.Character:FindFirstChildOfClass('Pants').PantsTemplate = 'rbxassetid://164114198';
-        else
-            local Pants = Instance.new('Pants');
-            Pants.Parent = game.Players.LocalPlayer.Character;
-            Pants.PantsTemplate = 'rbxassetid://164114198';
-        end;
-    else
-        OutFitOn = false
-        game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(MaskOff):Play()
-        game.Players.LocalPlayer.Character.BatmanOutfit.Handle.Transparency = 0
-        game.Players.LocalPlayer.Character.BatmanOutfit.Handle.Decal.Transparency = 0
-        game.Players.LocalPlayer.Character:FindFirstChildOfClass('Shirt').ShirtTemplate = old2
-        game.Players.LocalPlayer.Character:FindFirstChildOfClass('Pants').PantsTemplate = old3
-    end
-end)
 
 game:GetObjects("rbxassetid://8083438374")[1].Parent = game.Players.LocalPlayer.Backpack 
 local GlideTool = game.Players.LocalPlayer.Backpack.Glide
 local GlideAnim = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
 GlideAnim.AnimationId = "rbxassetid://3084858603"
 local Gliding = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(GlideAnim)
+
 function GlideToolActive()
     local player = game.Players.LocalPlayer
     repeat wait() until player.Character
     local humanoid = player.Character:WaitForChild('Humanoid')
     local bodyvelocity = game.Players.LocalPlayer.Backpack.Glide.Handle:WaitForChild("BodyVelocity")
     local jumpover = true
+    
     function jump()
         jumpover = false
         wait(.3)
@@ -158,6 +111,7 @@ function GlideToolActive()
             end
         end
     end
+    
     humanoid.StateChanged:Connect(function(oldState, newState)
         if jumpover == true then
             if newState == Enum.HumanoidStateType.Jumping then
@@ -172,11 +126,6 @@ function GlideToolActive()
             else
                 Gliding:Stop()
                 if game.Players.LocalPlayer.Character:FindFirstChild("Glide") then
-                Gliding:Stop()
-                play(2952274135, true, true)
-            end 
-                Gliding:Stop()
-                if game.Players.LocalPlayer.Character:FindFirstChild("Glide") then
                     Gliding:Stop()
                     play(2952274135, true, true)
                 end
@@ -187,8 +136,3 @@ function GlideToolActive()
 end
 
 GlideTool.Equipped:Connect(GlideToolActive())
-
-local GrappleHook = Instance.new('Tool')
-GrappleHook.Parent = game.Players.LocalPlayer.Backpack
-GrappleHook.Name = "GrappleHook"
-GrappleHook.RequiresHandle = false
